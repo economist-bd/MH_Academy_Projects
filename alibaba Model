@@ -1,0 +1,1441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alibaba Cloud Model Studio</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+
+  .nav-start-free {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .nav-start-free:hover {
+    opacity: 0.8;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(100, 100, 120, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(60, 40, 180, 0.2) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%234020c0;stop-opacity:0.05"/></linearGradient></defs><rect fill="url(%23g)" width="1440" height="800"/></svg>') center/cover;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+  }
+
+  .hero-badge a {
+    color: #a29bfe;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #6c5ce7, #5a4bd1);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(108, 92, 231, 0.4);
+  }
+
+  /* Models Section */
+  .models-section {
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .model-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .model-tab {
+    padding: 8px 20px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .model-tab.active {
+    background: rgba(108, 92, 231, 0.15);
+    border-color: rgba(108, 92, 231, 0.4);
+    color: #fff;
+  }
+
+  .model-tab:hover:not(.active) {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .model-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .model-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .model-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .model-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .model-card .model-series {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .model-card .model-series::before {
+    content: '◆';
+    font-size: 8px;
+    color: rgba(108, 92, 231, 0.6);
+  }
+
+  .model-card p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+  }
+
+  .more-models-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 24px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .more-models-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+
+  /* Why Model Studio */
+  .why-section {
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .why-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .why-item {
+    padding: 32px;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .why-item:first-child {
+    background: rgba(108, 92, 231, 0.08);
+  }
+
+  .why-item:hover {
+    background: rgba(108, 92, 231, 0.05);
+  }
+
+  .why-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(108, 92, 231, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .why-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .why-item:first-child h3 {
+    color: #a29bfe;
+  }
+
+  .why-item p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+  }
+
+  .why-right {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .model-tag {
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s;
+  }
+
+  .model-tag.highlight {
+    background: rgba(108, 92, 231, 0.15);
+    border-color: rgba(108, 92, 231, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+  }
+
+  .model-tag.highlight .tag-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  /* Latest Updates */
+  .updates-section {
+    padding: 80px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .updates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .update-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    align-items: flex-start;
+  }
+
+  .update-date {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    min-width: 80px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .update-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6c5ce7;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .update-content {
+    flex: 1;
+  }
+
+  .update-label {
+    font-size: 12px;
+    color: #a29bfe;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .update-title {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+  }
+
+  .update-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  .update-desc a {
+    color: #a29bfe;
+    text-decoration: none;
+  }
+
+  /* Get Started */
+  .getstarted-section {
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .getstarted-subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 40px;
+  }
+
+  .getstarted-cta {
+    display: block;
+    margin: 0 auto 60px;
+    padding: 12px 28px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #6c5ce7, #5a4bd1);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .getstarted-cta:hover {
+    box-shadow: 0 8px 30px rgba(108, 92, 231, 0.4);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .step-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-item {
+    padding: 32px;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .step-item:first-child {
+    background: rgba(108, 92, 231, 0.08);
+  }
+
+  .step-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .step-item:first-child h3 {
+    color: #a29bfe;
+  }
+
+  .step-icon {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .step-icon-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .step-icon-dot.active {
+    background: #a29bfe;
+  }
+
+  .step-right {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-screenshot {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .screenshot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .screenshot-header .btn-create {
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: #6c5ce7;
+    color: #fff;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .screenshot-body {
+    padding: 16px;
+  }
+
+  .screenshot-table {
+    width: 100%;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .screenshot-table th {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 500;
+  }
+
+  .screenshot-table td {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .screenshot-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .form-group label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    outline: none;
+  }
+
+  .form-group textarea {
+    height: 60px;
+    resize: none;
+  }
+
+  .form-ok-btn {
+    align-self: flex-start;
+    padding: 6px 20px;
+    border-radius: 4px;
+    background: #6c5ce7;
+    color: #fff;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Empowering Industries */
+  .industries-section {
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .industry-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.3s;
+  }
+
+  .industry-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .industry-quote {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.15);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .industry-card p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .industry-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.15), rgba(108, 92, 231, 0.05));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .industry-person::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    background: linear-gradient(135deg, transparent 0%, rgba(108, 92, 231, 0.1) 100%);
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .person-info {
+    flex: 1;
+    z-index: 1;
+  }
+
+  .person-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .person-title {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 8px;
+  }
+
+  .person-learn {
+    font-size: 12px;
+    color: #a29bfe;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .person-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(108, 92, 231, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cta-section h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 32px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .cta-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: #fff;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Floating buttons */
+  .floating-btns {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
+  }
+
+  .floating-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .floating-btn.chat {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: #fff;
+  }
+
+  .floating-btn.star {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: #fff;
+  }
+
+  .floating-btn:hover {
+    transform: scale(1.1);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .model-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .industries-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 36px;
+    }
+    .model-cards {
+      grid-template-columns: 1fr;
+    }
+    .why-grid, .steps-grid {
+      grid-template-columns: 1fr;
+    }
+    nav {
+      padding: 0 20px;
+    }
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">☁</div>
+    <span>Alibaba Cloud<br>Model Studio</span>
+  </a>
+  <div class="nav-links">
+    <a href="#models">Models</a>
+    <a href="#docs">Docs</a>
+    <a href="#api">API Guide</a>
+  </div>
+  <a href="#" class="nav-start-free">Start Free</a>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Model Studio Now Available in the U.S.! <a href="#">Try Now →</a>
+    </div>
+    <h1>Foundation for AI Creation</h1>
+    <p>Accelerate deployment and scaling of Qwen, Wan, and more leading models on one secure Alibaba Cloud platform</p>
+    <button class="hero-cta">Claim 1M Free Tokens per Model</button>
+  </div>
+</section>
+
+<!-- Models Section -->
+<section class="models-section fade-in" id="models">
+  <h2 class="section-title">Explore Industry-Leading Foundational Models</h2>
+  <div class="model-tabs">
+    <button class="model-tab active" data-tab="flagship">Flagship</button>
+    <button class="model-tab" data-tab="cost">Cost-optimized</button>
+    <button class="model-tab" data-tab="visual">Visual</button>
+    <button class="model-tab" data-tab="wan">Wan</button>
+    <button class="model-tab" data-tab="multimodal">Multi-modal</button>
+    <button class="model-tab" data-tab="embeddings">Embeddings</button>
+  </div>
+  <div class="model-cards">
+    <div class="model-card">
+      <h3>Qwen3-Max</h3>
+      <div class="model-series">Qwen3</div>
+      <p>The Qwen 3 series Max model has undergone specialized upgrades in agent programming and tool invocation compared to the preview version. The...</p>
+    </div>
+    <div class="model-card">
+      <h3>Qwen3-Coder-Plus</h3>
+      <div class="model-series">Qwen3</div>
+      <p>Powered by Qwen3, this is a powerful Coding Agent that excels in tool calling and environment interaction to achieve autonomous programming. It combines...</p>
+    </div>
+    <div class="model-card">
+      <h3>Qwen-MT-Plus</h3>
+      <div class="model-series">Qwen3</div>
+      <p>Qwen-MT-Plus, the flagship translation model from our Qwen series, is now fully upgraded with the Qwen3 architecture. It supports 92 languages and delivers...</p>
+    </div>
+    <div class="model-card">
+      <h3>Qwen-Plus</h3>
+      <div class="model-series">Qwen3</div>
+      <p>Qwen-Plus is an enhanced version of the Qwen ultra-large language model that supports multiple input languages such as Chinese and English. Compared to...</p>
+    </div>
+  </div>
+  <button class="more-models-btn">More models</button>
+</section>
+
+<!-- Why Model Studio -->
+<section class="why-section fade-in">
+  <h2 class="section-title">Why Model Studio?</h2>
+  <div class="why-grid">
+    <div class="why-left">
+      <div class="why-item">
+        <div class="why-item-icon">◎</div>
+        <h3>Diverse Model Ecosystem</h3>
+        <p>Easily experience and quickly access Alibaba Cloud's latest foundational models (FM), including Qwen-Max, Qwen-Plus, Qwen-Turbo, Qwen-VL, and the Wan series.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-icon">⚡</div>
+        <h3>Efficient Full-Chain Development</h3>
+      </div>
+      <div class="why-item">
+        <div class="why-item-icon">🔒</div>
+        <h3>Enterprise-Grade Security</h3>
+      </div>
+    </div>
+    <div class="why-right">
+      <span class="model-tag">Qwen-VL-Plus</span>
+      <span class="model-tag">Qwen3</span>
+      <span class="model-tag">Qwen-Flash</span>
+      <span class="model-tag">Qwen-Omni-Turbo</span>
+      <span class="model-tag highlight">
+        <span class="tag-icon">Q</span>
+        Qwen
+      </span>
+      <span class="model-tag">Qwen3-Coder-Plus</span>
+      <span class="model-tag">Qwen-Max</span>
+      <span class="model-tag">Wan2.2-Plus</span>
+      <span class="model-tag highlight">
+        <span class="tag-icon">W</span>
+        Wan
+      </span>
+      <span class="model-tag">Wan2.2-t2v-plus</span>
+      <span class="model-tag">wan2.2-i2v-plus</span>
+      <span class="model-tag">wan2.2-i2v-plus</span>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Updates -->
+<section class="updates-section fade-in">
+  <h2 class="section-title">Latest Updates</h2>
+  <div class="updates-list">
+    <div class="update-item">
+      <span class="update-date">2026-01-23</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Model Launched</div>
+        <div class="update-title">Qwen3-Max-2026-01-23</div>
+        <div class="update-desc">Compared with the snapshot as of September 23, 2025, the Qwen-3 series Max model in this release achieves an effective integration of thinking and non-thinking modes, resulting in a comprehensive and substantial improvement in the model's overall performance. In thinking mode, the model simultaneously supports web search, web information extraction, and a code interpreter tool, enabling it to tackle more complex and challenging problems with greater accuracy by leveraging external tools while engaging in slow, deliberative reasoning. <a href="#">Learn More</a></div>
+      </div>
+    </div>
+    <div class="update-item">
+      <span class="update-date">2026-01-23</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Model Launched</div>
+        <div class="update-title">Wan2.6-i2v-Flash</div>
+      </div>
+    </div>
+    <div class="update-item">
+      <span class="update-date">2026-01-15</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Model Launched</div>
+        <div class="update-title">Qwen-Image-Edit-Max</div>
+      </div>
+    </div>
+    <div class="update-item">
+      <span class="update-date">2026-01-04</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Region</div>
+        <div class="update-title">Alibaba Cloud Model Studio Now Available in the U.S.!</div>
+      </div>
+    </div>
+    <div class="update-item">
+      <span class="update-date">2025-12-31</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Model Launched</div>
+        <div class="update-title">Qwen-Image-Max</div>
+      </div>
+    </div>
+    <div class="update-item">
+      <span class="update-date">2025-12-16</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Model Launched</div>
+        <div class="update-title">Wan2.6 Series</div>
+      </div>
+    </div>
+    <div class="update-item">
+      <span class="update-date">2025-12-03</span>
+      <span class="update-dot"></span>
+      <div class="update-content">
+        <div class="update-label">New Competition</div>
+        <div class="update-title">AI Video for Business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Get Started -->
+<section class="getstarted-section fade-in" id="api">
+  <h2 class="section-title">Get Started in Minutes</h2>
+  <p class="getstarted-subtitle">Quickly integrate generative AI into your applications using our straightforward REST API or dedicated SDKs.</p>
+  <button class="getstarted-cta">Generate your API key</button>
+  <div class="steps-grid">
+    <div class="step-left">
+      <div class="step-item">
+        <div class="step-icon">
+          <span class="step-icon-dot active"></span>
+          <span class="step-icon-dot"></span>
+          <span class="step-icon-dot"></span>
+          <span class="step-icon-dot"></span>
+        </div>
+        <h3>Get a API Key</h3>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">
+          <span class="step-icon-dot"></span>
+          <span class="step-icon-dot active"></span>
+          <span class="step-icon-dot"></span>
+          <span class="step-icon-dot"></span>
+        </div>
+        <h3>Set Up Environment</h3>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">
+          <span class="step-icon-dot"></span>
+          <span class="step-icon-dot"></span>
+          <span class="step-icon-dot active"></span>
+          <span class="step-icon-dot"></span>
+        </div>
+        <h3>Send Your First Request</h3>
+      </div>
+    </div>
+    <div class="step-right">
+      <div class="step-screenshot">
+        <div class="screenshot-header">
+          <span>API Key Management</span>
+          <button class="btn-create">Create API Key (1/10)</button>
+        </div>
+        <div class="screenshot-body">
+          <table class="screenshot-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>API Key</th>
+                <th>Workspace</th>
+                <th>Description</th>
+                <th>Creation Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ID NO.</td>
+                <td>sk-e***22239</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top: 16px; padding: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 12px;">Create API Key</div>
+            <div class="screenshot-form">
+              <div class="form-group">
+                <label>Workspace *</label>
+                <select><option>Select a workspace</option></select>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea placeholder="Enter a description"></textarea>
+              </div>
+              <button class="form-ok-btn">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Empowering Industries -->
+<section class="industries-section fade-in">
+  <h2 class="section-title">Empowering Industries</h2>
+  <div class="industries-grid">
+    <div class="industry-card">
+      <div class="industry-quote">"</div>
+      <p>Through its partnership with Alibaba Cloud, AstraZeneca has introduced a groundbreaking adverse event summary system in the pharmaceutical industry, utilizing Qwen LLM and Dedicated Model Studio to significantly enhance the accuracy and efficiency of reporting.</p>
+      <div class="industry-person">
+        <div class="person-info">
+          <div class="person-name">Xin Zhong</div>
+          <div class="person-title">Executive director-Head of IT, China and Hong Kong</div>
+          <a href="#" class="person-learn">Learn More ↗</a>
+        </div>
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agent/PlaceHolder.png" alt="Xin Zhong" class="person-photo">
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-quote">"</div>
+      <p>Drunk Elephant partnered with Alibaba Cloud because it had the cosmetics industry know-how, was familiar with the client's IT infrastructure, and, as the largest cloud computing company in China and Asia Pacific, offered digital expertise and a huge advantage in the Eastern market.</p>
+      <div class="industry-person">
+        <div class="person-info">
+          <div class="person-name">Tina Chen</div>
+          <div class="person-title">Chief Digital Officer China Regio-Shiseido</div>
+          <a href="#" class="person-learn">Learn More ↗</a>
+        </div>
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agent/PlaceHolder.png" alt="Tina Chen" class="person-photo">
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-quote">"</div>
+      <p>eSignGlobal partnered with Alibaba Cloud to leverage its AI capabilities, launching eSignGlobal 2.0, a sophisticated Contract Lifecycle Management system featuring enhanced multilingual support, automated risk detection, and efficient contract processing.</p>
+      <div class="industry-person">
+        <div class="person-info">
+          <div class="person-name">eSignGlobal</div>
+          <div class="person-title">A convenient, efficient, secure, low-cost, and eco-friendly electronic signature product, specifically designed for global markets.</div>
+          <a href="#" class="person-learn">Learn More </a>
+        </div>
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agent/PlaceHolder.png" alt="eSignGlobal" class="person-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section fade-in">
+  <div class="cta-icon">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
+      <path d="M16 4V16M16 16L28 10M16 16L4 10M16 16V28" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    </svg>
+  </div>
+  <h2>Start Building with Model Studio Today</h2>
+  <p>Leverage our leading foundational models and secure platform to bring your ideas to life.</p>
+  <button class="cta-btn">Start Your Free Trial Now</button>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="#">Qwen</a>
+    <a href="#">Wan</a>
+    <a href="#">ModelScope</a>
+    <a href="#">Alibaba Cloud</a>
+    <a href="#">Community</a>
+  </div>
+  <div class="footer-copy">Copyright © 2026 Alibaba. All rights reserved.</div>
+</footer>
+
+<!-- Floating Buttons -->
+<div class="floating-btns">
+  <button class="floating-btn chat">💬</button>
+  <button class="floating-btn star">✦</button>
+</div>
+
+<script>
+  // Scroll animations
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeElements.forEach(el => observer.observe(el));
+
+  // Model tabs
+  const tabs = document.querySelectorAll('.model-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Model cards hover effect
+  document.querySelectorAll('.model-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'rgba(108, 92, 231, 0.3)';
+    });
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+    });
+  });
+
+  // Why items hover
+  document.querySelectorAll('.why-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.style.background = 'rgba(108, 92, 231, 0.1)';
+    });
+    item.addEventListener('mouseleave', function() {
+      if (this === document.querySelector('.why-item:first-child')) {
+        this.style.background = 'rgba(108, 92, 231, 0.08)';
+      } else {
+        this.style.background = 'rgba(0, 0, 0, 0.6)';
+      }
+    });
+  });
+
+  // Step items hover
+  document.querySelectorAll('.step-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.style.background = 'rgba(108, 92, 231, 0.08)';
+    });
+    item.addEventListener('mouseleave', function() {
+      if (this === document.querySelector('.step-item:first-child')) {
+        this.style.background = 'rgba(108, 92, 231, 0.08)';
+      } else {
+        this.style.background = 'rgba(0, 0, 0, 0.6)';
+      }
+    });
+  });
+
+  // Industry cards hover
+  document.querySelectorAll('.industry-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'rgba(108, 92, 231, 0.2)';
+    });
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+    });
+  });
+
+  // CTA button hover
+  document.querySelectorAll('.hero-cta, .getstarted-cta').forEach(btn => {
+    btn.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-2px)';
+      this.style.boxShadow = '0 8px 30px rgba(108, 92, 231, 0.4)';
+    });
+    btn.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // Floating buttons
+  document.querySelectorAll('.floating-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        this.style.transform = 'scale(1)';
+      }, 150);
+    });
+  });
+
+  // Model tags hover
+  document.querySelectorAll('.model-tag').forEach(tag => {
+    tag.addEventListener('mouseenter', function() {
+      if (!this.classList.contains('highlight')) {
+        this.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+        this.style.color = 'rgba(255, 255, 255, 0.8)';
+      }
+    });
+    tag.addEventListener('mouseleave', function() {
+      if (!this.classList.contains('highlight')) {
+        this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        this.style.color = 'rgba(255, 255, 255, 0.5)';
+      }
+    });
+  });
+
+  // Parallax effect on hero background
+  window.addEventListener('scroll', function() {
+    const hero = document.querySelector('.hero-bg');
+    if (hero) {
+      const scrolled = window.pageYOffset;
+      hero.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+    }
+  });
+
+  // More models button
+  document.querySelector('.more-models-btn').addEventListener('click', function() {
+    this.style.borderColor = 'rgba(108, 92, 231, 0.4)';
+    this.style.color = '#a29bfe';
+    setTimeout(() => {
+      this.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+      this.style.color = 'rgba(255, 255, 255, 0.7)';
+    }, 300);
+  });
+
+  // CTA button
+  document.querySelector('.cta-btn').addEventListener('click', function() {
+    this.style.borderColor = 'rgba(108, 92, 231, 0.4)';
+    this.style.background = 'rgba(108, 92, 231, 0.1)';
+    setTimeout(() => {
+      this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+      this.style.background = 'transparent';
+    }, 300);
+  });
+
+  // Nav scroll effect
+  let lastScroll = 0;
+  window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > 100) {
+      nav.style.background = 'rgba(0, 0, 0, 0.95)';
+    } else {
+      nav.style.background = 'rgba(0, 0, 0, 0.8)';
+    }
+    lastScroll = currentScroll;
+  });
+</script>
+
+</body>
+</html>
