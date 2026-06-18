@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Monjurul Haque | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;      /* মেইন ব্যাকগ্রাউন্ড */
+            --bg-card: #1e293b;      /* কার্ড ব্যাকগ্রাউন্ড */
+            
+            /* নতুন কালার প্যালেট */
+            --orange: #f97316;       /* প্রাইমারি বাটন ও হাইলাইট */
+            --yellow: #eab308;       /* আইকন ও বর্ডার */
+            --green: #22c55e;        /* সাকসেস ও ট্যাগ */
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--yellow) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- অ্যানিমেটেড ব্যাকগ্রাউন্ড ব্লব --- */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+        .blob-1 { top: -100px; left: -100px; }
+        .blob-2 { bottom: -100px; right: -100px; background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, rgba(0,0,0,0) 70%); animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+        }
+
+        /* --- হেডার --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-main);
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover { color: var(--orange); }
+
+        /* --- হিরো সেকশন (ছবি সহ) --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 150px 5% 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap-reverse;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--orange); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            border-left: 3px solid var(--green);
+            padding-left: 15px;
+        }
+
+        /* অ্যানিমেটেড প্রোফাইল ছবি */
+        .profile-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 300px;
+        }
+
+        .profile-img {
+            width: 350px;
+            height: 350px;
+            background: url('https://avatars.githubusercontent.com/u/108608880?v=4') no-repeat center center/cover; /* আপনার গিটহাব ছবি ব্যবহার করা হয়েছে, আপনি পরিবর্তন করতে পারেন */
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
+            animation: morph 8s ease-in-out infinite;
+            transition: 0.5s;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; border-color: var(--orange); }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; border-color: var(--green); }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; border-color: var(--orange); }
+        }
+
+        /* বাটন স্টাইল */
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+        }
+        .btn-primary:hover { background: #ea580c; transform: translateY(-3px); }
+        .btn-outline {
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            margin-left: 15px;
+        }
+        .btn-outline:hover { background: var(--yellow); color: #000; }
+
+
+        /* --- ক্যারোজাল / স্লাইডার (Mac Window Style) --- */
+        .carousel-section {
+            padding: 80px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mac-window {
+            background: #111;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            overflow: hidden;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .window-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .window-title { margin-left: auto; margin-right: auto; font-size: 0.8rem; color: #888; letter-spacing: 1px; }
+
+        /* স্লাইডার কন্টেন্ট */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 450px; /* উচ্চতা */
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide.active { opacity: 1; z-index: 10; }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* অথবা contain */
+            opacity: 0.8;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 30px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--orange);
+            backdrop-filter: blur(5px);
+        }
+
+        /* স্লাইডার বাটন */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 20;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .slider-btn:hover { background: var(--orange); }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+
+        /* --- প্রজেক্ট গ্রিড (সাধারণ) --- */
+        .grid-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* কার্ডের উপরে চিকন রঙিন বর্ডার */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green));
+            transform: scaleX(0);
+            transition: 0.4s;
+            transform-origin: left;
+        }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        .tag { color: var(--green); font-size: 0.85rem; background: rgba(34, 197, 94, 0.1); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        
+        .card h3 { margin-bottom: 10px; color: var(--text-main); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+
+        /* --- FAQ --- */
+        .faq-item {
+            background: var(--bg-card);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid transparent;
+            overflow: hidden;
+        }
+        .faq-item.active { border-left-color: var(--orange); }
+        .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-muted); }
+        .faq-item.active .faq-answer { padding-bottom: 20px; max-height: 200px; }
+
+
+        /* --- ফুটার --- */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: #0b1120;
+        }
+        .social-link {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        .social-link:hover { color: var(--orange); }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 100px; }
+            .profile-img { width: 250px; height: 250px; }
+            .nav-menu { display: none; }
+            .slider-container { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <header>
+        <a href="#" class="logo">Monjurul.</a>
+        <nav class="nav-menu">
+            <a href="#projects">প্রজেক্ট</a>
+            <a href="#showcase">গ্যালারি</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact" style="color: var(--orange);">যোগাযোগ</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <p>অর্থনীতিবিদ & ওয়েব ডেভেলপার</p>
+            <h1>Designing the <br> <span>Future of EdTech</span></h1>
+            <p style="border: none; padding: 0; margin-top: 10px; color: #ccc;">
+                আমি মোঃ মঞ্জুরুল হক। এআই এবং আধুনিক ওয়েব টেকনোলজি ব্যবহার করে শিক্ষাকে সহজ ও আনন্দদায়ক করাই আমার লক্ষ্য।
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="#contact" class="btn btn-primary">আমাকে হায়ার করুন</a>
+                <a href="https://github.com/Economics-2" class="btn btn-outline"><i class="fab fa-github"></i> গিটহাব</a>
+            </div>
+        </div>
+        
+        <div class="profile-wrapper">
+            <div class="profile-img"></div> 
+        </div>
+    </section>
+
+    <section class="carousel-section" id="showcase">
+        <h2 style="margin-bottom: 10px; font-size: 2rem;">প্রজেক্ট গ্যালারি</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">কেনার আগে বা দেখার আগে যাচাই করুন</p>
+        
+        <div class="mac-window">
+            <div class="window-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <div class="window-title">preview_mode - portfolio</div>
+            </div>
+            
+            <div class="slider-container">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000&auto=format&fit=crop" alt="Project 1">
+                    <div class="slide-caption">AI Voice Generator Dashboard</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" alt="Project 2">
+                    <div class="slide-caption">Amar Dukan E-Commerce</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000&auto=format&fit=crop" alt="Project 3">
+                    <div class="slide-caption">JUSC Academic Portal</div>
+                </div>
+
+                <button class="slider-btn prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid-section" id="projects">
+        <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem;">উল্লেখযোগ্য কাজসমূহ</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="tag">AI Tool</span>
+                <h3>AI Voice Generator</h3>
+                <p>টেক্সট থেকে ন্যাচারাল ভয়েস তৈরির আধুনিক টুল। জেমিনি এআই এপিআই ইন্টিগ্রেটেড।</p>
+                <a href="#" style="color: var(--orange); text-decoration: none; font-weight: 600;">বিস্তারিত দেখুন &rarr;</a>
+            </div>
+            <div class="card">
+                <span class="tag">E-Commerce</span>
+                <h3>Amar Dukan</h3>
+                <p>সম্পূর্ণ ফাংশনাল ই-কমার্স টেমপ্লেট, কার্ট এবং চেকআউট সিস্টেম সহ।</p>
+                <a href="#" style="color: var(--orange); text-decoration: none; font-weight: 600;">বিস্তারিত দেখুন &rarr;</a>
+            </div>
+            <div class="card">
+                <span class="tag">Education</span>
+                <h3>JUSC Portal</h3>
+                <p>কলেজ ম্যানেজমেন্ট সিস্টেম এবং স্টুডেন্ট ডাটাবেস পোর্টাল।</p>
+                <a href="#" style="color: var(--orange); text-decoration: none; font-weight: 600;">বিস্তারিত দেখুন &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section style="max-width: 800px; margin: 0 auto; padding: 50px 20px;" id="faq">
+        <h2 style="text-align: center; margin-bottom: 40px;">সচরাচর জিজ্ঞাসা (FAQ)</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                আমি কি আমার প্রজেক্টের জন্য আপনাকে হায়ার করতে পারি?
+                <i class="fas fa-plus" style="color: var(--yellow);"></i>
+            </div>
+            <div class="faq-answer">
+                অবশ্যই! ওয়েব ডেভেলপমেন্ট বা এআই সলিউশনের জন্য আমাকে ইমেইল করতে পারেন।
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                আপনি কি ধরণের টেকনোলজি ব্যবহার করেন?
+                <i class="fas fa-plus" style="color: var(--yellow);"></i>
+            </div>
+            <div class="faq-answer">
+                আমি মূলত HTML, CSS, JavaScript, Firebase এবং বিভিন্ন AI API ব্যবহার করে কাজ করি।
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="color: white; margin-bottom: 20px;">আসুন কথা বলি</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">eco452@gmail.com</p>
+        <div>
+            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.5;">&copy; 2026 Md. Monjurul Haque</p>
+    </footer>
+
+    <script>
+        // স্লাইডার লজিক
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function moveSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // অটো প্লে (অপশনাল - ৩ সেকেন্ড পর পর)
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+
+        // FAQ লজিক
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

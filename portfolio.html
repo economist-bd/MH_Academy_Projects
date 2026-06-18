@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Monjurul Haque | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #0f172a;
+            --accent-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* হেডার */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 15px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            margin-left: 25px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* হিরো সেকশন */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 140px 5% 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .hero-text p {
+            margin-bottom: 35px;
+            font-size: 1.15rem;
+            max-width: 600px;
+            color: #475569;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* প্রজেক্ট সেকশন */
+        .projects-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-header {
+            padding: 20px 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .folder-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .external-links a {
+            color: #64748b;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            transition: 0.2s;
+        }
+
+        .external-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .project-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            padding: 0 20px 20px;
+        }
+
+        .tech-tag {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-family: monospace;
+            background: #eff6ff;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .github-more-btn {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* ফুটার */
+        footer {
+            background: var(--secondary-color);
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 5%;
+            margin-top: 80px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Monjurul.</a>
+            <div class="nav-links">
+                <a href="#about">পরিচিতি</a>
+                <a href="#projects">প্রজেক্টসমূহ</a>
+                <a href="#skills">দক্ষতা</a>
+                <a href="#contact">যোগাযোগ</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="about">
+        <div class="hero-text">
+            <h2>প্রভাষক (অর্থনীতি) ও ওয়েব ডেভেলপার</h2>
+            <h1>মোঃ মঞ্জুরুল হক</h1>
+            <p>
+                শিক্ষা ও প্রযুক্তির সমন্বয়ে গড়ছি আগামীর ওয়েব। আমি অর্থনীতি শিক্ষার পাশাপাশি আধুনিক ওয়েব অ্যাপ্লিকেশন ও এআই সলিউশন তৈরি করি।
+            </p>
+            <a href="#contact" class="btn">যোগাযোগ করুন</a>
+            <a href="https://github.com/Economics-2" target="_blank" class="btn btn-outline">
+                <i class="fab fa-github"></i> GitHub প্রোফাইল
+            </a>
+        </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">আমার প্রজেক্টসমূহ</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-robot folder-icon"></i>
+                    <div class="external-links">
+                        <a href="https://github.com/Economics-2/Ai-voice" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://economics-2.github.io/Ai-voice" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Voice Generator</h3>
+                    <p class="project-desc">এআই প্রযুক্তির সাহায্যে টেক্সট থেকে ভয়েস জেনারেট করার একটি ওয়েব অ্যাপ্লিকেশন।</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Artificial Intelligence</span>
+                    <span class="tech-tag">Gemini API</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-school folder-icon"></i>
+                    <div class="external-links">
+                        <a href="https://github.com/Economics-2/Monjurul-JUSC" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://economics-2.github.io/Monjurul-JUSC" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">JUSC Academic Portal</h3>
+                    <p class="project-desc">জিয়াউদ্দিন স্কুল এন্ড কলেজের শিক্ষার্থীদের জন্য তৈরি একাডেমিক তথ্য ও রিসোর্স পোর্টাল।</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Education</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-book-reader folder-icon"></i>
+                    <div class="external-links">
+                        <a href="https://github.com/Economics-2/HSC_Exam2025" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">HSC Exam 2025 Resources</h3>
+                    <p class="project-desc">২০২৫ সালের এইচএসসি পরীক্ষার্থীদের জন্য সিলেবাস এবং রুটিন ম্যানেজমেন্ট টুল।</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Exam Prep</span>
+                    <span class="tech-tag">Management</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="far fa-folder-open folder-icon"></i>
+                    <div class="external-links">
+                        <a href="https://github.com/economist-bd/amar_dukan.com" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://economist-bd.github.io/amar_dukan.com" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Amar Dukan</h3>
+                    <p class="project-desc">আধুনিক ই-কমার্স ওয়েবসাইট টেমপ্লেট, যাতে রিটার্ন পলিসি এবং প্রোডাক্ট শোকেসিং এর ব্যবস্থা রয়েছে।</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">E-Commerce</span>
+                    <span class="tech-tag">JS</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="far fa-folder-open folder-icon"></i>
+                    <div class="external-links">
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Neera (PWA)</h3>
+                    <p class="project-desc">মোবাইল ফ্রেন্ডলি গ্রসারি শপ অ্যাপ (PWA), যা ব্যবহারকারীদের দ্রুত কেনাকাটার অভিজ্ঞতা দেয়।</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Progressive Web App</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="far fa-folder-open folder-icon"></i>
+                    <div class="external-links">
+                        <a href="https://github.com/economist-bd/demand-supply" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://economist-bd.github.io/demand-supply" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Demand & Supply</h3>
+                    <p class="project-desc">অর্থনীতির ছাত্রদের জন্য ইন্টারঅ্যাক্টিভ লার্নিং পোর্টাল।</p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Education</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="github-more-btn">
+            <a href="https://github.com/Economics-2?tab=repositories" target="_blank" class="btn btn-outline">
+                <i class="fab fa-github"></i> গিটহাবে সব প্রজেক্ট দেখুন
+            </a>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact" style="background: var(--secondary-color); color: white; padding: 60px 5%; text-align: center;">
+        <h2 style="margin-bottom: 20px;">যোগাযোগ</h2>
+        <p style="margin-bottom: 30px; font-size: 1.2rem;">জিয়াউদ্দিন স্কুল এন্ড কলেজ, কিশোরগঞ্জ</p>
+        
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="mailto:eco452@gmail.com" class="btn">ইমেইল করুন</a>
+            <a href="tel:01715247588" class="btn btn-outline" style="border-color: white; color: white;">কল করুন</a>
+        </div>
+
+        <div class="social-links" style="margin-top: 40px;">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="https://github.com/Economics-2"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/@Economist"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.7;">&copy; ২০২৬ মোঃ মঞ্জুরুল হক। সর্বস্বত্ব সংরক্ষিত।</p>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Monjurul Haque | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb; /* প্রফেশনাল ব্লু */
+            --secondary-color: #1e293b; /* ডার্ক স্লেট */
+            --accent-color: #f59e0b; /* এআই হাইলাইটের জন্য */
+            --light-bg: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* হেডার ডিজাইন */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* হিরো সেকশন */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 5% 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* দক্ষতা সেকশন */
+        .skills-section {
+            padding: 60px 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            display: inline-block;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 150px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .skill-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* প্রজেক্ট গ্যালারি */
+        .projects-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-tag {
+            background: #e0e7ff;
+            color: var(--primary-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        /* যোগাযোগ সেকশন */
+        .contact-section {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ফুটার */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* মোবাইলে মেনু সিম্পল রাখা হয়েছে */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Monjurul Haque</div>
+            <div class="nav-links">
+                <a href="#about">পরিচিতি</a>
+                <a href="#skills">দক্ষতা</a>
+                <a href="#projects">প্রজেক্ট</a>
+                <a href="#contact">যোগাযোগ</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="about">
+        <div class="hero-text">
+            <h2>প্রভাষক (অর্থনীতি) ও ওয়েব ডেভেলপার</h2>
+            <h1>মোঃ মঞ্জুরুল হক</h1>
+            <p>
+                আমি অর্থনীতি শিক্ষার পাশাপাশি আধুনিক প্রযুক্তির সমন্বয়ে ওয়েব সলিউশন তৈরি করি। 
+                আমার লক্ষ্য: <strong>"প্রযুক্তি ও শিক্ষার সমন্বয়ে আধুনিক ওয়েব সলিউশন এবং এআই ইন্টিগ্রেশন"</strong>।
+                ছাত্র-ছাত্রীদের জন্য জটিল বিষয় সহজ করার পাশাপাশি আমি ডিজিটাল নোম্যাড হিসেবে বিভিন্ন ক্লায়েন্টের জন্য কাজ করি।
+            </p>
+            <a href="#contact" class="cta-btn">আমার সাথে কাজ করুন</a>
+        </div>
+        </section>
+
+    <section class="skills-section" id="skills">
+        <h2 class="section-title">আমার দক্ষতাসমূহ</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h3>Web Development</h3>
+                <p>HTML, CSS, JS, Firebase</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-robot"></i>
+                <h3>AI Integration</h3>
+                <p>Prompt Eng., AI Content</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>PWA Apps</h3>
+                <p>App Creation</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Economics</h3>
+                <p>Teaching & Content</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+        <h2 class="section-title" style="display: block; text-align: center;">উল্লেখযোগ্য কাজসমূহ</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">E-Commerce PWA</span>
+                    <h3 class="project-title">Neera (নীরা)</h3>
+                    <p class="project-desc">একটি পূর্ণাঙ্গ গ্রসারি শপ PWA অ্যাপ। যেখানে ব্যবহারকারীরা সহজেই নিত্যপ্রয়োজনীয় পণ্য অর্ডার করতে পারেন।</p>
+                    <a href="#" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">বিস্তারিত দেখুন &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Education App</span>
+                    <h3 class="project-title">ঘরে বসে সহজে আয়</h3>
+                    <p class="project-desc">HTML দিয়ে তৈরি একটি ইন্টারঅ্যাক্টিভ বই অ্যাপ (PWA), যা পাঠকদের ফ্রিল্যান্সিং শিখতে সাহায্য করে।</p>
+                    <a href="#" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">বিস্তারিত দেখুন &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Business Website</span>
+                    <h3 class="project-title">EcoHut</h3>
+                    <p class="project-desc">আধুনিক ই-কমার্স ওয়েবসাইট ক্লোন প্রজেক্ট। রেসপন্সিভ ডিজাইন এবং ইউজার-ফ্রেন্ডলি ইন্টারফেস।</p>
+                    <a href="#" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">বিস্তারিত দেখুন &rarr;</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Medical Portal</span>
+                    <h3 class="project-title">Insaf Medical</h3>
+                    <p class="project-desc">অনলাইন ডাক্তার অ্যাপয়েন্টমেন্ট এবং স্বাস্থ্য টিপস প্রদানের জন্য একটি ডায়নামিক ওয়েব পোর্টাল।</p>
+                    <a href="#" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">বিস্তারিত দেখুন &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section style="background: #eef2ff; padding: 60px 5%; text-align: center;">
+        <h2 style="color: var(--secondary-color); margin-bottom: 20px;">এআই এবং কন্টেন্ট ক্রিয়েশন</h2>
+        <p style="max-width: 700px; margin: 0 auto 30px;">
+            আমি শুধু কোড করি না, এআই টুলস ব্যবহার করে ক্রিয়েটিভ কন্টেন্ট তৈরি করি। আমার ইউটিউব চ্যানেল 'Economist'-এ আমি জটিল অর্থনৈতিক বিষয়গুলোকে এআই এবং অ্যানিমেশনের মাধ্যমে সহজবোধ্য করে উপস্থাপন করি।
+        </p>
+        <a href="https://www.youtube.com/@Economist" target="_blank" class="cta-btn" style="background: #ff0000;">
+            <i class="fab fa-youtube"></i> ইউটিউব চ্যানেল ভিজিট করুন
+        </a>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>যোগাযোগ করুন</h2>
+        <p>জিয়াউদ্দিন স্কুল এন্ড কলেজ, কিশোরগঞ্জ</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>eco452@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>০াই৭১৫২৪৭৫৮৮</span>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; ২০২৬ মোঃ মঞ্জুরুল হক। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+</body>
+</html>

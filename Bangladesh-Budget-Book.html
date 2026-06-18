@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলাদেশের বাজেট: একটি পূর্ণাঙ্গ নির্দেশিকা</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --paper-color: #fdfbf7;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #e0e5ec;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .book-container {
+            position: relative;
+            width: 90%;
+            max-width: 450px; /* Mobile friendly width */
+            height: 80vh;
+            max-height: 700px;
+            perspective: 1500px;
+        }
+
+        .book {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            background: #2c3e50; /* Spine color */
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--paper-color);
+            padding: 30px;
+            box-sizing: border-box;
+            border-radius: 8px 10px 10px 8px;
+            box-shadow: inset 10px 0 20px rgba(0,0,0,0.05); /* Spine shadow */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-origin: left center;
+            backface-visibility: hidden;
+            z-index: 1;
+            overflow-y: auto; /* Allow scrolling for long content */
+        }
+
+        /* Scrollbar styling */
+        .page::-webkit-scrollbar {
+            width: 6px;
+        }
+        .page::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+
+        /* Page Stacking Logic */
+        .page.flipped {
+            transform: rotateY(-180deg);
+            z-index: 0;
+        }
+        
+        /* Specific Styles for Content */
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            margin-top: 0;
+        }
+
+        p, li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            text-align: justify;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .highlight-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--accent-color);
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .cover-page {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .cover-page h1 {
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cover-page p {
+            color: #ecf0f1;
+            text-align: center;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            bottom: -60px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .progress {
+            font-size: 1rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        /* Mobile adjustment */
+        @media (max-width: 500px) {
+            .page { padding: 20px; }
+            h1 { font-size: 1.5rem; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="book-container">
+    <div class="book" id="book">
+        <!-- Content Generated Below -->
+        
+        <!-- Page 1: Cover -->
+        <div class="page cover-page" style="z-index: 50;">
+            <h1>বাংলাদেশের বাজেট</h1>
+            <h3>এক নজরে অর্থনীতি ও উন্নয়ন</h3>
+            <p>প্রস্তুতকারক: মোঃ মঞ্জুরুল হক</p>
+            <p>প্রভাষক (অর্থনীতি)</p>
+            <p>জিয়াউদ্দিন স্কুল এন্ড কলেজ, কিশোরগঞ্জ</p>
+            <div style="margin-top: 20px; font-size: 3rem;">🇧🇩</div>
+        </div>
+
+        <!-- Page 2: Introduction -->
+        <div class="page" style="z-index: 49;">
+            <h2>বাজেট কী?</h2>
+            <p>বাজেট হলো একটি নির্দিষ্ট অর্থবছরের জন্য সরকারের প্রাক্কলিত আয় এবং ব্যয়ের একটি বিস্তারিত হিসাব। এটি মূলত রাষ্ট্রের আর্থিক পরিকল্পনার দলিল।</p>
+            <div class="highlight-box">
+                সহজ কথায়: একটি পরিবারের যেমন মাসিক আয়-ব্যয়ের হিসাব থাকে, রাষ্ট্রের জন্যও তেমনি বাৎসরিক হিসাবই হলো বাজেট।
+            </div>
+            <p>ফরাসি শব্দ 'Bougette' থেকে বাজেট শব্দটি এসেছে, যার অর্থ হলো 'টাকার থলি'।</p>
+            <div class="page-number">২/৫০</div>
+        </div>
+
+        <!-- Page 3: Constitutional Basis -->
+        <div class="page" style="z-index: 48;">
+            <h2>সংবিধান ও বাজেট</h2>
+            <p>বাংলাদেশের সংবিধানের <strong>৮৭ অনুচ্ছেদে</strong> বাজেটের কথা উল্লেখ আছে। সংবিধানে একে 'বার্ষিক আর্থিক বিবৃতি' (Annual Financial Statement) বলা হয়েছে।</p>
+            <ul>
+                <li>অর্থমন্ত্রী রাষ্ট্রপতির সুপারিশক্রমে সংসদে বাজেট পেশ করেন।</li>
+                <li>সংসদের অনুমোদন ছাড়া সরকার কোনো অর্থ ব্যয় করতে পারে না।</li>
+            </ul>
+            <div class="page-number">৩/৫০</div>
+        </div>
+
+        <!-- Page 4: Importance -->
+        <div class="page" style="z-index: 47;">
+            <h2>বাজেটের গুরুত্ব</h2>
+            <p>অর্থনীতির ছাত্রদের জন্য বাজেটের গুরুত্ব অপরিসীম:</p>
+            <ol>
+                <li><strong>সম্পদের সুষম বণ্টন:</strong> ধনী-দরিদ্র বৈষম্য কমানো।</li>
+                <li><strong>মূল্যস্ফীতি নিয়ন্ত্রণ:</strong> দ্রব্যের দাম স্থিতিশীল রাখা।</li>
+                <li><strong>কর্মসংস্থান:</strong> নতুন প্রকল্প গ্রহণের মাধ্যমে বেকারত্ব দূর করা।</li>
+            </ol>
+            <div class="page-number">৪/৫০</div>
+        </div>
+
+        <!-- Page 5: History -->
+        <div class="page" style="z-index: 46;">
+            <h2>বাংলাদেশের প্রথম বাজেট</h2>
+            <p>স্বাধীন বাংলাদেশের প্রথম বাজেট পেশ করেন অর্থমন্ত্রী <strong>তাজউদ্দীন আহমদ</strong>।</p>
+            <div class="highlight-box">
+                তারিখ: ৩০ জুন, ১৯৭২<br>
+                আকার: ৭৮৬ কোটি টাকা
+            </div>
+            <p>সেই ৭৮৬ কোটি টাকার বাজেট আজ প্রায় ৮ লক্ষ কোটি টাকায় উন্নীত হয়েছে, যা বাংলাদেশের অভাবনীয় অর্থনৈতিক অগ্রযাত্রার প্রতীক।</p>
+            <div class="page-number">৫/৫০</div>
+        </div>
+
+        <!-- Page 6: Budget Structure -->
+        <div class="page" style="z-index: 45;">
+            <h2>বাজেটের গঠন</h2>
+            <p>বাংলাদেশের বাজেট মূলত দুইটি প্রধান অংশে বিভক্ত:</p>
+            <ol>
+                <li><strong>রাজস্ব বাজেট (Revenue Budget):</strong> সরকারের দৈনন্দিন খরচ (বেতন, ভাতা ইত্যাদি)।</li>
+                <li><strong>উন্নয়ন বাজেট (Development Budget):</strong> রাস্তাঘাট, ব্রিজ, স্কুল নির্মাণ ইত্যাদি।</li>
+            </ol>
+            <div class="page-number">৬/৫০</div>
+        </div>
+
+        <!-- Page 7: Revenue Income -->
+        <div class="page" style="z-index: 44;">
+            <h2>সরকারের আয়ের উৎস</h2>
+            <p>সরকার মূলত ৩টি উৎস থেকে আয় করে:</p>
+            <ul>
+                <li><strong>NBR কর:</strong> ভ্যাট, আয়কর, শুল্ক (সবচেয়ে বড় উৎস)।</li>
+                <li><strong>Non-NBR কর:</strong> মাদক শুল্ক, যানবাহন কর, ভূমি রাজস্ব।</li>
+                <li><strong>কর-বহির্ভূত আয় (Non-Tax):</strong> সরকারি প্রতিষ্ঠানের লভ্যাংশ, টোল, ফি।</li>
+            </ul>
+            <div class="page-number">৭/৫০</div>
+        </div>
+
+        <!-- Page 8: VAT -->
+        <div class="page" style="z-index: 43;">
+            <h2>মূল্য সংযোজন কর (VAT)</h2>
+            <p>বর্তমানে বাংলাদেশ সরকারের আয়ের সবচেয়ে বড় উৎস হলো ভ্যাট। এটি একটি পরোক্ষ কর। আমরা যখন কোনো পণ্য কিনি বা সেবা গ্রহণ করি (যেমন রেস্টুরেন্টে খাওয়া), তখন আমরা ভ্যাট দিই।</p>
+            <p>১৯৯১ সালে বাংলাদেশে ভ্যাট ব্যবস্থা চালু হয়।</p>
+            <div class="page-number">৮/৫০</div>
+        </div>
+
+        <!-- Page 9: Income Tax -->
+        <div class="page" style="z-index: 42;">
+            <h2>আয়কর (Income Tax)</h2>
+            <p>এটি একটি প্রত্যক্ষ কর। যাদের বাৎসরিক আয় একটি নির্দিষ্ট সীমার (যেমন ৩,৫০,০০০ টাকা) উপরে, তাদের আয়কর দিতে হয়।</p>
+            <div class="highlight-box">
+                আয়কর প্রদান সাম্য ও ন্যায়পরায়ণতার নীতি নিশ্চিত করে—অর্থাৎ "যার আয় বেশি, তার কর বেশি"।
+            </div>
+            <div class="page-number">৯/৫০</div>
+        </div>
+
+        <!-- Page 10: ADP -->
+        <div class="page" style="z-index: 41;">
+            <h2>বার্ষিক উন্নয়ন কর্মসূচি (ADP)</h2>
+            <p>বাজেটের যে অংশ দিয়ে দেশের উন্নয়নমূলক কাজ হয়, তাকে বার্ষিক উন্নয়ন কর্মসূচি বা ADP বলে।</p>
+            <p>পদ্মা সেতু, মেট্রো রেল, কর্ণফুলী টানেল—সবই এই উন্নয়ন বাজেটের অংশ।</p>
+            <div class="page-number">১০/৫০</div>
+        </div>
+
+        <!-- Page 11: Fiscal Year -->
+        <div class="page" style="z-index: 40;">
+            <h2>অর্থবছর (Fiscal Year)</h2>
+            <p>বাংলাদেশে অর্থবছর শুরু হয় <strong>১লা জুলাই</strong> এবং শেষ হয় পরবর্তী বছরের <strong>৩০শে জুন</strong>।</p>
+            <p>যেমন: ২০২৪-২৫ অর্থবছর মানে ২০২৪ সালের ১ জুলাই থেকে ২০২৫ সালের ৩০ জুন পর্যন্ত সময়কাল।</p>
+            <div class="page-number">১১/৫০</div>
+        </div>
+
+        <!-- Page 12: Budget Deficit -->
+        <div class="page" style="z-index: 39;">
+            <h2>বাজেট ঘাটতি (Deficit)</h2>
+            <p>বাংলাদেশের বাজেট সাধারণত 'ঘাটতি বাজেট' হয়। এর মানে হলো সরকারের আয় কম, কিন্তু ব্যয় বেশি।</p>
+            <div class="highlight-box">
+                ঘাটতি = মোট ব্যয় - মোট আয়
+            </div>
+            <p>উন্নয়নশীল দেশে উন্নয়নের গতি বাড়ানোর জন্য সহনীয় মাত্রার ঘাটতি বাজেট ভালো (সাধারণত জিডিপির ৫% পর্যন্ত)।</p>
+            <div class="page-number">১২/৫০</div>
+        </div>
+
+        <!-- Page 13: Financing Deficit -->
+        <div class="page" style="z-index: 38;">
+            <h2>ঘাটতি পূরণ</h2>
+            <p>সরকার ঘাটতি মেটাতে দুইভাবে ঋণ নেয়:</p>
+            <ol>
+                <li><strong>বৈদেশিক উৎস:</strong> বিশ্বব্যাংক, আইএমএফ, জাইকা থেকে ঋণ ও অনুদান।</li>
+                <li><strong>অভ্যন্তরীণ উৎস:</strong> ব্যাংক ঋণ এবং সঞ্চয়পত্র বিক্রি।</li>
+            </ol>
+            <div class="page-number">১৩/৫০</div>
+        </div>
+
+        <!-- Page 14: Education Sector -->
+        <div class="page" style="z-index: 37;">
+            <h2>শিক্ষা খাত</h2>
+            <p>বাজেটে শিক্ষা ও প্রযুক্তি খাতে সর্বোচ্চ বরাদ্দ রাখা হয়। এর উদ্দেশ্য হলো মানবসম্পদ উন্নয়ন।</p>
+            <ul>
+                <li>প্রাথমিক ও গণশিক্ষা মন্ত্রণালয়।</li>
+                <li>মাধ্যমিক ও উচ্চ শিক্ষা বিভাগ।</li>
+            </ul>
+            <p>লক্ষ্য: ২০৪১ সালের মধ্যে স্মার্ট বাংলাদেশ গড়া।</p>
+            <div class="page-number">১৪/৫০</div>
+        </div>
+
+        <!-- Page 15: Agriculture -->
+        <div class="page" style="z-index: 36;">
+            <h2>কৃষি খাত</h2>
+            <p>খাদ্য নিরাপত্তা নিশ্চিত করতে কৃষি খাতে ব্যাপক ভর্তুকি দেওয়া হয়। সার, বীজ ও কৃষি যন্ত্রপাতিতে সরকার বিশাল অংকের অর্থ ব্যয় করে।</p>
+            <p>কৃষি বাংলাদেশের অর্থনীতির প্রাণ, তাই বাজেটে এর গুরুত্ব অপরিসীম।</p>
+            <div class="page-number">১৫/৫০</div>
+        </div>
+
+        <!-- Page 16: Health Sector -->
+        <div class="page" style="z-index: 35;">
+            <h2>স্বাস্থ্য খাত</h2>
+            <p>জনগণের স্বাস্থ্যসেবা নিশ্চিত করতে হাসপাতাল নির্মাণ, ওষুধ সরবরাহ এবং ডাক্তার-নার্স নিয়োগে বাজেট বরাদ্দ থাকে।</p>
+            <p>কোভিড-১৯ পরবর্তী সময়ে স্বাস্থ্য খাতে গবেষণা ও অবকাঠামো উন্নয়নে বরাদ্দ বাড়ানো হয়েছে।</p>
+            <div class="page-number">১৬/৫০</div>
+        </div>
+
+        <!-- Page 17: Social Safety Net -->
+        <div class="page" style="z-index: 34;">
+            <h2>সামাজিক নিরাপত্তা বেষ্টনী</h2>
+            <p>দরিদ্র ও অসহায় মানুষের জন্য সরকার বিশেষ ভাতার ব্যবস্থা করে। যেমন:</p>
+            <ul>
+                <li>বয়স্ক ভাতা</li>
+                <li>বিধবা ভাতা</li>
+                <li>প্রতিবন্ধী ভাতা</li>
+            </ul>
+            <p>বাজেটের একটি উল্লেখযোগ্য অংশ এই খাতে যায়।</p>
+            <div class="page-number">১৭/৫০</div>
+        </div>
+
+        <!-- Page 18: Defense -->
+        <div class="page" style="z-index: 33;">
+            <h2>প্রতিরক্ষা খাত</h2>
+            <p>দেশের সার্বভৌমত্ব রক্ষা, সেনাবাহিনীর আধুনিকায়ন এবং বর্ডার গার্ডদের সক্ষমতা বাড়াতে প্রতিরক্ষা খাতে বরাদ্দ রাখা হয়। এটি সাধারণত বাজেটের বড় খাতগুলোর একটি।</p>
+            <div class="page-number">১৮/৫০</div>
+        </div>
+
+        <!-- Page 19: Power & Energy -->
+        <div class="page" style="z-index: 32;">
+            <h2>বিদ্যুৎ ও জ্বালানি</h2>
+            <p>শিল্পায়ন ও জনজীবনের মানোন্নয়নে বিদ্যুৎ অপরিহার্য। রূপপুর পারমাণবিক বিদ্যুৎ কেন্দ্র, রামপাল বিদ্যুৎ কেন্দ্র এবং এলএনজি আমদানিতে বাজেটের বিশাল অর্থ ব্যয় হয়।</p>
+            <div class="page-number">১৯/৫০</div>
+        </div>
+
+        <!-- Page 20: Mega Projects -->
+        <div class="page" style="z-index: 31;">
+            <h2>মেগা প্রজেক্ট</h2>
+            <p>দেশের চেহারাই বদলে দিচ্ছে মেগা প্রজেক্টগুলো। বাজেট থেকে এগুলোর অর্থায়ন হয়।</p>
+            <ul>
+                <li>মেট্রো রেল (এমআরটি)</li>
+                <li>মাতারবাড়ি গভীর সমুদ্র বন্দর</li>
+                <li>পদ্মা রেল সংযোগ</li>
+            </ul>
+            <div class="page-number">২০/৫০</div>
+        </div>
+
+        <!-- Page 21: Interest Payment -->
+        <div class="page" style="z-index: 30;">
+            <h2>ঋণের সুদ পরিশোধ</h2>
+            <p>সরকার যে দেশি-বিদেশি ঋণ নেয়, তার জন্য প্রতি বছর প্রচুর সুদ দিতে হয়। বর্তমানে বাজেটের ব্যয়ের একটি বিশাল অংশ (প্রায় ২০%) শুধু সুদ পরিশোধেই চলে যায়। এটি অর্থনীতির জন্য একটি চ্যালেঞ্জ।</p>
+            <div class="page-number">২১/৫০</div>
+        </div>
+
+        <!-- Page 22: Inflation -->
+        <div class="page" style="z-index: 29;">
+            <h2>মূল্যস্ফীতি নিয়ন্ত্রণ</h2>
+            <p>বাজেটের অন্যতম প্রধান লক্ষ্য থাকে মূল্যস্ফীতি বা ইনফ্লেশন নিয়ন্ত্রণে রাখা। বাজারে টাকার প্রবাহ নিয়ন্ত্রণ করে সরকার দ্রব্যমূল্য সহনীয় রাখার চেষ্টা করে।</p>
+            <div class="page-number">২২/৫০</div>
+        </div>
+
+        <!-- Page 23: GDP Growth -->
+        <div class="page" style="z-index: 28;">
+            <h2>জিডিপি প্রবৃদ্ধি (GDP Growth)</h2>
+            <p>প্রতি বাজেটে একটি নির্দিষ্ট জিডিপি প্রবৃদ্ধির লক্ষ্যমাত্রা ঠিক করা হয় (যেমন ৬.৫% বা ৭%)। এটি নির্দেশ করে দেশের অর্থনীতি গত বছরের তুলনায় কতটা বড় হবে।</p>
+            <div class="page-number">২৩/৫০</div>
+        </div>
+
+        <!-- Page 24: Budget Preparation Process -->
+        <div class="page" style="z-index: 27;">
+            <h2>বাজেট প্রণয়ন প্রক্রিয়া - ১</h2>
+            <p>বাজেট প্রণয়ন একদিনের কাজ নয়। অর্থ মন্ত্রণালয় প্রায় ৬ মাস আগে থেকে কাজ শুরু করে। বিভিন্ন মন্ত্রণালয় থেকে তাদের চাহিদার তালিকা চাওয়া হয়।</p>
+            <div class="page-number">২৪/৫০</div>
+        </div>
+
+        <!-- Page 25: Budget Preparation Process -->
+        <div class="page" style="z-index: 26;">
+            <h2>বাজেট প্রণয়ন প্রক্রিয়া - ২</h2>
+            <p>ব্যবসায়ী সংগঠন (যেমন FBCCI), অর্থনীতিবিদ এবং সুশীল সমাজের সাথে অর্থমন্ত্রী প্রাক-বাজেট আলোচনা করেন। তাদের পরামর্শ নিয়ে খসড়া বাজেট তৈরি হয়।</p>
+            <div class="page-number">২৫/৫০</div>
+        </div>
+
+        <!-- Page 26: Budget Speech -->
+        <div class="page" style="z-index: 25;">
+            <h2>বাজেট বক্তৃতা</h2>
+            <p>জুন মাসের প্রথম বা দ্বিতীয় বৃহস্পতিবার জাতীয় সংসদে অর্থমন্ত্রী বাজেট বক্তৃতা দেন। অর্থমন্ত্রীর সাথে থাকে তার আইকনিক 'বাজেট ব্রিফকেস'।</p>
+            <div class="page-number">২৬/৫০</div>
+        </div>
+
+        <!-- Page 27: Passing the Budget -->
+        <div class="page" style="z-index: 24;">
+            <h2>বাজেট পাস</h2>
+            <p>সংসদে দীর্ঘ আলোচনার পর, সাংসদদের ভোটে বাজেট পাস হয়। রাষ্ট্রপতি এতে স্বাক্ষর করলে তা ১ জুলাই থেকে কার্যকর হয়। একে 'অ্যাপ্রোপ্রিয়েশন অ্যাক্ট' বলে।</p>
+            <div class="page-number">২৭/৫০</div>
+        </div>
+
+        <!-- Page 28: Supplementary Budget -->
+        <div class="page" style="z-index: 23;">
+            <h2>সম্পূরক বাজেট</h2>
+            <p>বছরের মাঝপথে যদি দেখা যায় বরাদ্দকৃত টাকায় হচ্ছে না বা কোনো খাতে টাকা বেঁচে গেছে, তখন সংশোধিত বা সম্পূরক বাজেট পেশ করা হয়।</p>
+            <div class="page-number">২৮/৫০</div>
+        </div>
+
+        <!-- Page 29: Consolidated Fund -->
+        <div class="page" style="z-index: 22;">
+            <h2>সংযুক্ত তহবিল (Consolidated Fund)</h2>
+            <p>সরকারের সকল রাজস্ব আয়, ঋণ এবং ঋণ পরিশোধের অর্থ এই তহবিলে জমা হয়। সংসদের অনুমতি ছাড়া এখান থেকে এক টাকাও খরচ করা যায় না।</p>
+            <div class="page-number">২৯/৫০</div>
+        </div>
+
+        <!-- Page 30: Public Account -->
+        <div class="page" style="z-index: 21;">
+            <h2>পাবলিক অ্যাকাউন্ট</h2>
+            <p>সংযুক্ত তহবিল বাদে অন্যান্য অর্থ (যেমন জনগণের সঞ্চয়পত্রের টাকা, প্রভিডেন্ট ফান্ড) এখানে থাকে। সরকার এই টাকার 'ব্যাংকার' বা ট্রাস্টি হিসেবে কাজ করে।</p>
+            <div class="page-number">৩০/৫০</div>
+        </div>
+
+         <!-- Page 31: Tax-GDP Ratio -->
+         <div class="page" style="z-index: 20;">
+            <h2>কর-জিডিপি অনুপাত</h2>
+            <p>বাংলাদেশে কর-জিডিপি অনুপাত বিশ্বের অন্যতম সর্বনিম্ন (১০% এর নিচে)। উন্নত অর্থনীতির জন্য এটি ১৫% এর উপরে হওয়া উচিত। বাজেট বাস্তবায়নে এটি একটি বড় চ্যালেঞ্জ।</p>
+            <div class="page-number">৩১/৫০</div>
+        </div>
+
+        <!-- Page 32: Black Money -->
+        <div class="page" style="z-index: 19;">
+            <h2>কালো টাকা (Black Money)</h2>
+            <p>অপ্রদর্শিত আয় বা কালো টাকা বাজেটের জন্য ক্ষতিকর। মাঝে মাঝে বাজেটে বিশেষ শর্তে কালো টাকা সাদা করার সুযোগ দেওয়া হয়, যা নিয়ে অর্থনীতিবিদদের মিশ্র প্রতিক্রিয়া থাকে।</p>
+            <div class="page-number">৩২/৫০</div>
+        </div>
+
+        <!-- Page 33: Austerity -->
+        <div class="page" style="z-index: 18;">
+            <h2>ব্যয় সংকোচন (Austerity)</h2>
+            <p>বৈশ্বিক অর্থনৈতিক সংকটের সময় (যেমন ইউক্রেন যুদ্ধ) সরকার 'ব্যয় সংকোচন' নীতি গ্রহণ করে। যেমন: সরকারি কর্মকর্তাদের বিদেশ ভ্রমণ নিষিদ্ধ করা, নতুন গাড়ি না কেনা।</p>
+            <div class="page-number">৩৩/৫০</div>
+        </div>
+
+        <!-- Page 34: LDC Graduation -->
+        <div class="page" style="z-index: 17;">
+            <h2>LDC গ্র্যাজুয়েশন ও বাজেট</h2>
+            <p>২০২৬ সালে বাংলাদেশ স্বল্পোন্নত দেশ (LDC) থেকে বের হয়ে উন্নয়নশীল দেশে পরিণত হবে। এরপর সহজ শর্তে ঋণ বা শুল্কমুক্ত সুবিধা পাওয়া যাবে না। বাজেট এখন থেকেই সেই প্রস্তুতি নিচ্ছে।</p>
+            <div class="page-number">৩৪/৫০</div>
+        </div>
+
+        <!-- Page 35: Smart Bangladesh -->
+        <div class="page" style="z-index: 16;">
+            <h2>স্মার্ট বাংলাদেশ বাজেট</h2>
+            <p>ডিজিটাল বাংলাদেশের পর এখন লক্ষ্য 'স্মার্ট বাংলাদেশ'। বাজেটে আইসিটি খাত, ফ্রিল্যান্সিং প্রশিক্ষণ এবং স্টার্ট-আপ তহবিলে বরাদ্দ বাড়ানো হচ্ছে।</p>
+            <div class="page-number">৩৫/৫০</div>
+        </div>
+
+        <!-- Page 36: Gender Budget -->
+        <div class="page" style="z-index: 15;">
+            <h2>জেন্ডার বাজেট</h2>
+            <p>নারীর ক্ষমতায়ন নিশ্চিত করতে বিভিন্ন মন্ত্রণালয়ের বাজেটে নারীদের জন্য পৃথক বরাদ্দ রাখা হয়। একে জেন্ডার বাজেট বলে। ২০০৯-১০ অর্থবছর থেকে এটি চালু আছে।</p>
+            <div class="page-number">৩৬/৫০</div>
+        </div>
+
+        <!-- Page 37: Green Budget -->
+        <div class="page" style="z-index: 14;">
+            <h2>সবুজ বাজেট (Green Budget)</h2>
+            <p>জলবায়ু পরিবর্তন মোকাবেলায় পরিবেশবান্ধব প্রকল্পের জন্য যে বাজেট বরাদ্দ থাকে। কার্বন নিঃসরণ কমানো এবং নবায়নযোগ্য শক্তি এর লক্ষ্য।</p>
+            <div class="page-number">৩৭/৫০</div>
+        </div>
+
+        <!-- Page 38: Universal Pension -->
+        <div class="page" style="z-index: 13;">
+            <h2>সর্বজনীন পেনশন</h2>
+            <p>সাম্প্রতিক বাজেটের অন্যতম বড় উদ্যোগ 'সর্বজনীন পেনশন স্কিম'। সরকারি চাকরিজীবী ছাড়াও সাধারণ নাগরিকরা যাতে বৃদ্ধ বয়সে সুরক্ষা পায়, তার ব্যবস্থা এটি।</p>
+            <div class="page-number">৩৮/৫০</div>
+        </div>
+
+        <!-- Page 39: Local Govt Budget -->
+        <div class="page" style="z-index: 12;">
+            <h2>স্থানীয় সরকার বাজেট</h2>
+            <p>ইউনিয়ন পরিষদ, পৌরসভা এবং সিটি কর্পোরেশনগুলোর নিজস্ব বাজেট থাকে, যা জাতীয় বাজেটের অনুদান এবং নিজস্ব আয়ের মাধ্যমে পরিচালিত হয়।</p>
+            <div class="page-number">৩৯/৫০</div>
+        </div>
+
+        <!-- Page 40: Subsidy Challenges -->
+        <div class="page" style="z-index: 11;">
+            <h2>ভর্তুকির চাপ</h2>
+            <p>বিদ্যুৎ, গ্যাস ও সারে বিপুল ভর্তুকি দিতে গিয়ে সরকারের ওপর চাপ বাড়ে। আইএমএফ-এর শর্ত মেনে সরকার ধীরে ধীরে ভর্তুকি কমানোর চেষ্টা করছে, ফলে জিনিসের দাম বাড়ছে।</p>
+            <div class="page-number">৪০/৫০</div>
+        </div>
+
+        <!-- Page 41: Reserves Crisis -->
+        <div class="page" style="z-index: 10;">
+            <h2>বৈদেশিক মুদ্রার রিজার্ভ</h2>
+            <p>বাজেট বাস্তবায়নে ডলার সংকট একটি বড় বাধা। আমদানির বিল মেটাতে রিজার্ভ ভালো থাকা জরুরি। বর্তমানে রিজার্ভ ধরে রাখা সরকারের বড় চ্যালেঞ্জ।</p>
+            <div class="page-number">৪১/৫০</div>
+        </div>
+
+        <!-- Page 42: Implementation Rate -->
+        <div class="page" style="z-index: 9;">
+            <h2>বাজেট বাস্তবায়নের হার</h2>
+            <p>বাজেট ঘোষণা করা সহজ, কিন্তু বাস্তবায়ন কঠিন। বাংলাদেশে সাধারণত উন্নয়ন বাজেটের (ADP) ৮০-৯০% বাস্তবায়িত হয়। আমলাতান্ত্রিক জটিলতা এর বড় কারণ।</p>
+            <div class="page-number">৪২/৫০</div>
+        </div>
+
+        <!-- Page 43: Recent Trends -->
+        <div class="page" style="z-index: 8;">
+            <h2>সাম্প্রতিক প্রবণতা (২০২৪-২৫)</h2>
+            <p>২০২৪-২৫ অর্থবছরের বাজেটের আকার প্রায় ৭ লক্ষ ৯৭ হাজার কোটি টাকা। এখানে মূল্যস্ফীতি নিয়ন্ত্রণ এবং কৃচ্ছ্রসাধনকে সর্বোচ্চ অগ্রাধিকার দেওয়া হয়েছে।</p>
+            <div class="page-number">৪৩/৫০</div>
+        </div>
+
+        <!-- Page 44: Student Perspective -->
+        <div class="page" style="z-index: 7;">
+            <h2>ছাত্রদের জন্য টিপস - ১</h2>
+            <p>বাজেট কেন পড়বে? কারণ বাজেট পড়লে তুমি বুঝতে পারবে আগামী এক বছর কোন জিনিসের দাম বাড়তে পারে এবং কোন খাতে চাকরির সুযোগ বাড়বে।</p>
+            <div class="page-number">৪৪/৫০</div>
+        </div>
+
+        <!-- Page 45: Student Perspective -->
+        <div class="page" style="z-index: 6;">
+            <h2>ছাত্রদের জন্য টিপস - ২</h2>
+            <p>ল্যাপটপ বা কম্পিউটার আমদানিতে শুল্ক কমলে ফ্রিল্যান্সারদের সুবিধা হয়। আবার শিক্ষা উপকরণের দাম বাড়লে ছাত্রদের খরচ বাড়ে। তাই বাজেট তোমার জীবনের সাথে জড়িত।</p>
+            <div class="page-number">৪৫/৫০</div>
+        </div>
+
+        <!-- Page 46: Technology & AI -->
+        <div class="page" style="z-index: 5;">
+            <h2>বাজেট ও এআই (AI)</h2>
+            <p>বর্তমানে বাজেটে প্রযুক্তি গবেষণায় বরাদ্দ বাড়ছে। এআই এবং রোবোটিক্স শেখার জন্য সরকার বিভিন্ন প্রজেক্ট নিচ্ছে। ছাত্রদের উচিত এই সুযোগ কাজে লাগিয়ে স্কিল ডেভেলপ করা।</p>
+            <div class="page-number">৪৬/৫০</div>
+        </div>
+
+        <!-- Page 47: Self Reliance -->
+        <div class="page" style="z-index: 4;">
+            <h2>স্বাবলম্বী হওয়ার সুযোগ</h2>
+            <p>বাজেটে এসএমই (ক্ষুদ্র ও মাঝারি শিল্প) ঋণের ব্যবস্থা থাকে। ছাত্ররা পড়াশোনার পাশাপাশি স্টার্ট-আপ বা ই-কমার্স বিজনেস শুরু করতে চাইলে সরকার থেকে স্বল্প সুদে ঋণ পেতে পারে।</p>
+            <div class="page-number">৪৭/৫০</div>
+        </div>
+
+        <!-- Page 48: Resource Distribution -->
+        <div class="page" style="z-index: 3;">
+            <h2>সুষম বন্টন কি নিশ্চিত হয়?</h2>
+            <p>সমালোচকরা বলেন, বাজেটে ধনীরা বেশি সুবিধা পায়। পরোক্ষ কর (ভ্যাট) গরিবের ওপর বেশি চাপ সৃষ্টি করে। একটি কল্যাণমুখী বাজেটে প্রত্যক্ষ করের ওপর জোর দেওয়া উচিত।</p>
+            <div class="page-number">৪৮/৫০</div>
+        </div>
+
+        <!-- Page 49: Conclusion -->
+        <div class="page" style="z-index: 2;">
+            <h2>উপসংহার</h2>
+            <p>বাজেট শুধু সংখ্যার খেলা নয়, এটি একটি জাতির স্বপ্ন পূরণের দলিল। সম্পদ সীমিত, কিন্তু চাহিদা অসীম। এই দুইয়ের সমন্বয় করাই হলো বাজেটের সার্থকতা।</p>
+            <div class="page-number">৪৯/৫০</div>
+        </div>
+
+        <!-- Page 50: End -->
+        <div class="page" style="z-index: 1;">
+            <h2>ধন্যবাদ</h2>
+            <p>এই বইটি পড়ার জন্য ধন্যবাদ।</p>
+            <p>আশা করি বাংলাদেশের বাজেট সম্পর্কে আপনার ধারণা এখন অনেক স্বচ্ছ।</p>
+            <div style="margin-top: 50px; text-align: center;">
+                <strong>সমাপ্ত</strong>
+            </div>
+            <div class="page-number">৫০/৫০</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="prevPage()">← আগের পৃষ্ঠা</button>
+        <span class="progress" id="progressInfo">পৃষ্ঠা ১ / ৫০</span>
+        <button id="nextBtn" onclick="nextPage()">পরের পৃষ্ঠা →</button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const totalPages = pages.length;
+    const progressInfo = document.getElementById('progressInfo');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateControls() {
+        progressInfo.textContent = `পৃষ্ঠা ${currentPage + 1} / ${totalPages}`;
+        
+        // Button states
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = currentPage === totalPages - 1;
+        
+        // Opacity for visual feedback
+        prevBtn.style.opacity = currentPage === 0 ? "0.5" : "1";
+        nextBtn.style.opacity = currentPage === totalPages - 1 ? "0.5" : "1";
+    }
+
+    function nextPage() {
+        if (currentPage < totalPages - 1) {
+            // Flip the current page (make it go left/hide)
+            pages[currentPage].classList.add('flipped');
+            currentPage++;
+            updateControls();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            // Unflip the previous page (bring it back)
+            pages[currentPage].classList.remove('flipped');
+            updateControls();
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextPage();
+        if (e.key === 'ArrowLeft') prevPage();
+    });
+
+    // Initial setup
+    // Ensure z-indices are correct for stacking (Highest index on top)
+    pages.forEach((page, index) => {
+        page.style.zIndex = totalPages - index;
+    });
+    
+    updateControls();
+</script>
+
+</body>
+</html>

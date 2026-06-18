@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Monjurul Haque | Creative Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #3b82f6;
+            --accent: #8b5cf6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --glass: rgba(30, 41, 59, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ব্যাকগ্রাউন্ড গ্লো এফেক্ট */
+        .glow-bg {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(15,23,42,0) 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+        .glow-bg-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(15,23,42,0) 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            z-index: -1;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* নেভিগেশন */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* ড্রপডাউন মেনু */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-card);
+            min-width: 220px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 15px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+        }
+
+        /* হিরো সেকশন */
+        .hero {
+            padding: 180px 5% 100px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.7);
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* সেকশন কমন স্টাইল */
+        section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        /* কার্ড স্টাইল */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(400px circle at var(--x) var(--y), rgba(59, 130, 246, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        .card-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        .card-link:hover {
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        /* FAQ সেকশন (নতুন) */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust based on content */
+            padding-bottom: 25px;
+        }
+
+        .faq-icon {
+            transition: 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        /* ফুটার */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 50px 5%;
+            text-align: center;
+            background: #0b1120;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* মোবাইল রেস্পন্সিভ */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-menu { display: none; } /* মোবাইলে মেনু হাইড রাখা হয়েছে সিম্পলিসিটির জন্য */
+            .glow-bg, .glow-bg-2 { width: 300px; height: 300px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+    <div class="glow-bg-2"></div>
+
+    <header>
+        <a href="#" class="logo">Monjurul.</a>
+        <nav class="nav-menu">
+            <a href="#about" class="nav-link">পরিচিতি</a>
+            <a href="#projects" class="nav-link">প্রজেক্ট</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-link">ব্লগ ও অ্যাক্টিভিটিস <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="https://economics-2.github.io/" target="_blank" class="dropdown-item">
+                        <i class="fas fa-globe"></i> গিটহাব পেজেস
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fab fa-blogger-b"></i> ইকোনমিক্স ব্লগ
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-pen-nib"></i> ব্যক্তিগত লেখালেখি
+                    </a>
+                </div>
+            </div>
+
+            <a href="#contact" class="btn btn-primary" style="padding: 10px 25px; font-size: 0.9rem;">যোগাযোগ</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="about">
+        <span class="badge">🚀 Lecturer of Economics & Web Developer</span>
+        <h1>Teaching with Passion <br> Building with <span>Intelligence</span></h1>
+        <p>
+            আমি মোঃ মঞ্জুরুল হক। অর্থনীতির জটিল বিষয়গুলো সহজ করার পাশাপাশি, আমি এআই (AI) এবং মডার্ন ওয়েব টেকনোলজি ব্যবহার করে ফিউচারিস্টিক ডিজিটাল সলিউশন তৈরি করি।
+        </p>
+        <div class="btn-group">
+            <a href="#projects" class="btn btn-primary">
+                আমার কাজ দেখুন <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="https://github.com/Economics-2" target="_blank" class="btn btn-outline">
+                <i class="fab fa-github"></i> GitHub প্রোফাইল
+            </a>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <h2>ফিচারড প্রজেক্টস</h2>
+            <p>আমার সাম্প্রতিক কিছু উল্লেখযোগ্য কাজ</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-robot card-icon"></i>
+                <h3>AI Voice Generator</h3>
+                <p>এআই প্রযুক্তির সাহায্যে টেক্সট থেকে ন্যাচারাল ভয়েস জেনারেট করার একটি শক্তিশালী ওয়েব টুল।</p>
+                <div class="tech-tags">
+                    <span class="tag">Artificial Intelligence</span>
+                    <span class="tag">API Integration</span>
+                </div>
+                <a href="https://economics-2.github.io/Ai-voice" target="_blank" class="card-link">লাইভ প্রিভিউ <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-university card-icon"></i>
+                <h3>JUSC Academic Portal</h3>
+                <p>জিয়াউদ্দিন স্কুল এন্ড কলেজের ছাত্র-ছাত্রীদের জন্য তৈরি একাডেমিক রিসোর্স ম্যানেজমেন্ট পোর্টাল।</p>
+                <div class="tech-tags">
+                    <span class="tag">Education</span>
+                    <span class="tag">Database</span>
+                </div>
+                <a href="https://economics-2.github.io/Monjurul-JUSC" target="_blank" class="card-link">লাইভ প্রিভিউ <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-shopping-cart card-icon"></i>
+                <h3>Amar Dukan (E-com)</h3>
+                <p>সম্পূর্ণ রেসপন্সিভ ই-কমার্স টেমপ্লেট, যাতে রয়েছে কার্ট ম্যানেজমেন্ট এবং ডায়নামিক প্রোডাক্ট গ্যালারি।</p>
+                <div class="tech-tags">
+                    <span class="tag">E-Commerce</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+                <a href="https://economist-bd.github.io/amar_dukan.com" target="_blank" class="card-link">লাইভ প্রিভিউ <i class="fas fa-external-link-alt"></i></a>
+            </div>
+             
+             <div class="card">
+                <i class="fas fa-book-reader card-icon"></i>
+                <h3>HSC Exam 2025 Helper</h3>
+                <p>এইচএসসি ২০২৫ পরীক্ষার্থীদের জন্য রুটিন, সিলেবাস এবং স্টাডি প্ল্যানার।</p>
+                <div class="tech-tags">
+                    <span class="tag">Student Tool</span>
+                    <span class="tag">Planner</span>
+                </div>
+                <a href="https://github.com/Economics-2/HSC_Exam2025" target="_blank" class="card-link">কোড দেখুন <i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header">
+            <h2>সচরাচর জিজ্ঞাসা (FAQ)</h2>
+            <p>আপনার সাধারণ প্রশ্নের উত্তর এখানে</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    আপনি কি ধরণের ওয়েবসাইট তৈরি করেন?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    আমি মূলত শিক্ষামূলক ওয়েবসাইট, ই-কমার্স (অনলাইন শপ), ব্যক্তিগত পোর্টফোলিও এবং এআই ভিত্তিক ওয়েব টুলস তৈরি করি। আমার লক্ষ্য হলো ব্যবহারকারীর কাজ সহজ করা।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    অর্থনীতি এবং ওয়েব ডেভেলপমেন্ট কিভাবে একসাথে কাজ করে?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    একজন অর্থনীতির শিক্ষক হিসেবে আমি জানি ডাটা এবং রিসোর্স ম্যানেজমেন্ট কতটা জরুরি। আমি ওয়েব ডেভেলপমেন্টের মাধ্যমে অর্থনীতির জটিল তত্ত্বগুলোকে ভিজ্যুয়ালাইজ করার চেষ্টা করি এবং ছাত্রদের জন্য অনলাইন লার্নিং সহজ করি।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    আপনার সাথে যোগাযোগের সেরা মাধ্যম কী?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    আপনি আমাকে `eco452@gmail.com` অথবা `himel452@gmail.com` এ ইমেইল করতে পারেন। এছাড়াও জিয়াউদ্দিন স্কুল এন্ড কলেজে সরাসরি দেখা করতে পারেন।
+                </div>
+            </div>
+             <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                   আমি কি আমার প্রজেক্টের জন্য আপনাকে হায়ার করতে পারি?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    অবশ্যই! আপনার যদি কোনো শিক্ষামূলক অ্যাপ, ওয়েবসাইট বা ই-কমার্স সাইটের প্রয়োজন হয়, তবে বিস্তারিত আলোচনা করতে যোগাযোগ সেকশন থেকে ইমেইল করুন।
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="color: white; margin-bottom: 20px;">আসুন কিছু নতুন তৈরি করি</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">প্রজেক্ট বা পরামর্শের জন্য যোগাযোগ করুন</p>
+        
+        <div class="social-icons">
+            <a href="mailto:eco452@gmail.com" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Economics-2" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/@Economist" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+
+        <p style="font-size: 0.9rem; color: rgba(255,255,255,0.3);">
+            &copy; ২০২৬ মোঃ মঞ্জুরুল হক | জিয়াউদ্দিন স্কুল এন্ড কলেজ, কিশোরগঞ্জ
+        </p>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // সব বন্ধ করুন
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+
+            // ক্লিক করাটা খুলুন (যদি আগে বন্ধ থাকে)
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // মাউস মুভমেন্ট ইফেক্ট (কার্ডের জন্য)
+        document.querySelectorAll('.card').forEach(card => {
+            card.onmousemove = e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            };
+        });
+    </script>
+</body>
+</html>

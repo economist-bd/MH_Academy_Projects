@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MH Academy - কিশোরগঞ্জ</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-navy: #0a1628;
+    --royal-blue: #1a3a6e;
+    --gold: #c9a227;
+    --gold-light: #e8c84a;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-muted: #6b7280;
+    --accent-green: #16a34a;
+    --bg-section: #f8f6f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(201,162,39,0.3);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: var(--deep-navy);
+  }
+  .logo-text { color: white; font-size: 1.1rem; font-weight: 700; line-height: 1.2; }
+  .logo-sub { color: var(--gold); font-size: 0.65rem; font-weight: 400; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep-navy); border: none; cursor: pointer;
+    padding: 8px 20px; border-radius: 6px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.85rem; font-weight: 700; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.9; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--deep-navy) 0%, #0f2148 50%, #1a3a6e 100%);
+    display: flex; align-items: center;
+    padding: 80px 5% 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -30%; left: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(26,58,110,0.5) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,162,39,0.15);
+    border: 1px solid rgba(201,162,39,0.4);
+    color: var(--gold-light); padding: 6px 16px; border-radius: 20px;
+    font-size: 0.8rem; margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease;
+  }
+  .hero h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: white; line-height: 1.25; margin-bottom: 12px;
+    animation: fadeInUp 0.7s ease;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    font-size: 1.15rem; color: rgba(255,255,255,0.7);
+    margin-bottom: 16px; animation: fadeInUp 0.8s ease;
+  }
+  .hero-location {
+    display: flex; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.5); font-size: 0.85rem;
+    margin-bottom: 32px; animation: fadeInUp 0.85s ease;
+  }
+  .hero-location span { color: var(--gold); font-size: 1rem; }
+  .hero-classes {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 36px; animation: fadeInUp 0.9s ease;
+  }
+  .class-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white; padding: 6px 16px; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 500;
+  }
+  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeInUp 1s ease; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep-navy); border: none; cursor: pointer;
+    padding: 13px 28px; border-radius: 8px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(201,162,39,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,162,39,0.4); }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white; cursor: pointer;
+    padding: 13px 28px; border-radius: 8px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1rem; font-weight: 500; transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--gold);
+    padding: 18px 5%;
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 1.6rem; font-weight: 700; color: var(--deep-navy); line-height: 1; }
+  .stat-label { font-size: 0.75rem; color: rgba(10,22,40,0.7); font-weight: 500; }
+
+  /* SECTIONS */
+  section { padding: 70px 5%; }
+
+  .section-header { text-align: center; margin-bottom: 50px; }
+  .section-tag {
+    display: inline-block;
+    background: rgba(201,162,39,0.12);
+    border: 1px solid rgba(201,162,39,0.3);
+    color: #9a7a1a; padding: 4px 14px; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600; margin-bottom: 12px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .section-title {
+    font-family: 'Tiro Bangla', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--deep-navy); margin-bottom: 12px;
+  }
+  .section-desc { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+  /* COURSES */
+  .courses-section { background: var(--bg-section); }
+  .courses-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .course-card {
+    background: white; border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .course-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .course-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+  .course-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .course-level {
+    font-size: 0.72rem; font-weight: 600; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .course-title { font-size: 1.15rem; font-weight: 700; color: var(--deep-navy); margin-bottom: 8px; }
+  .course-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+  .course-subjects { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .subject-tag {
+    background: var(--bg-section); border: 1px solid rgba(0,0,0,0.08);
+    color: var(--text-dark); padding: 3px 10px; border-radius: 12px; font-size: 0.75rem;
+  }
+  .course-btn {
+    width: 100%; padding: 10px; border-radius: 8px;
+    background: var(--deep-navy); color: white; border: none; cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif; font-size: 0.9rem; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .course-btn:hover { background: var(--royal-blue); }
+
+  /* DCAMPUS FEATURES */
+  .features-section { background: white; }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .feature-card {
+    border-radius: 16px; padding: 28px;
+    background: var(--bg-section);
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: box-shadow 0.25s;
+  }
+  .feature-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+  .feature-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .feature-icon-box {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; flex-shrink: 0;
+  }
+  .feat-blue { background: rgba(26,58,110,0.1); }
+  .feat-gold { background: rgba(201,162,39,0.12); }
+  .feat-green { background: rgba(22,163,74,0.1); }
+  .feat-purple { background: rgba(124,58,237,0.1); }
+  .feat-red { background: rgba(220,38,38,0.1); }
+  .feature-name { font-size: 1.05rem; font-weight: 700; color: var(--deep-navy); }
+  .feature-tag-line { font-size: 0.78rem; color: var(--text-muted); }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 5px 0; font-size: 0.88rem; color: var(--text-dark);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .check { color: var(--accent-green); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
+
+  /* ADMISSION */
+  .admission-section {
+    background: linear-gradient(135deg, var(--deep-navy), var(--royal-blue));
+    color: white; text-align: center;
+  }
+  .admission-section .section-title { color: white; }
+  .admission-section .section-desc { color: rgba(255,255,255,0.7); }
+  .admission-steps {
+    display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    margin: 40px 0; max-width: 800px; margin-left: auto; margin-right: auto;
+  }
+  .step {
+    flex: 1; min-width: 150px; position: relative; text-align: center; padding: 0 10px;
+  }
+  .step::after {
+    content: '→';
+    position: absolute; right: -8px; top: 20px;
+    color: var(--gold); font-size: 1.2rem;
+  }
+  .step:last-child::after { display: none; }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--gold); color: var(--deep-navy);
+    font-size: 1.1rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .step-label { font-size: 0.85rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .admission-cards {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 36px;
+  }
+  .pay-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 16px 24px;
+    font-size: 0.9rem; color: rgba(255,255,255,0.9);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* WHY US */
+  .why-section { background: var(--bg-section); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .why-card {
+    background: white; border-radius: 16px; padding: 28px 22px;
+    text-align: center; border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+  .why-card:hover { transform: translateY(-3px); }
+  .why-icon { font-size: 2.2rem; margin-bottom: 14px; }
+  .why-title { font-size: 1rem; font-weight: 700; color: var(--deep-navy); margin-bottom: 8px; }
+  .why-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-section { background: white; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media(max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info h3 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 1.6rem; color: var(--deep-navy); margin-bottom: 20px;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .contact-icon-box {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(201,162,39,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-detail-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+  .contact-detail-value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); }
+  .contact-form { background: var(--bg-section); border-radius: 16px; padding: 28px; }
+  .contact-form h4 { font-size: 1.1rem; font-weight: 700; color: var(--deep-navy); margin-bottom: 20px; }
+  .form-row { margin-bottom: 14px; }
+  .form-row label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; padding: 10px 14px; border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.12); background: white;
+    font-family: 'Hind Siliguri', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    width: 100%; padding: 12px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep-navy); border: none; border-radius: 8px; cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif; font-size: 1rem; font-weight: 700;
+    transition: opacity 0.2s;
+  }
+  .form-submit:hover { opacity: 0.9; }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep-navy); color: rgba(255,255,255,0.7);
+    padding: 40px 5% 24px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+  @media(max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+  .footer-brand h3 { color: white; font-size: 1.2rem; margin-bottom: 10px; }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+  .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 700; margin-bottom: 14px; }
+  .footer-col a {
+    display: block; color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 0.85rem; margin-bottom: 8px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px; text-align: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.3);
+  }
+  .gold-text { color: var(--gold); }
+
+  /* SCROLL ANIMATION */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeInUp 0.6s ease both; }
+
+  /* MOBILE */
+  @media(max-width: 600px) {
+    .nav-links { display: none; }
+    .stats-bar { gap: 30px; }
+    .admission-steps { gap: 16px; }
+    .step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">MH</div>
+    <div class="logo-text">
+      MH Academy
+      <div class="logo-sub">অর্থনীতি কোচিং সেন্টার — কিশোরগঞ্জ</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#courses">কোর্সসমূহ</a>
+    <a href="#features">সুবিধাসমূহ</a>
+    <a href="#admission">ভর্তি</a>
+    <a href="#contact">যোগাযোগ</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'})">অনলাইন ভর্তি</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⭐ কিশোরগঞ্জের সেরা অর্থনীতি কোচিং</div>
+    <h1>MH Academy<br><span>অর্থনীতি শিখুন,</span><br>স্বপ্ন পূরণ করুন</h1>
+    <p class="hero-sub">HSC থেকে Masters পর্যন্ত অর্থনীতির সর্বোচ্চ মানের কোচিং</p>
+    <div class="hero-location">
+      <span>📍</span> কিশোরগঞ্জ সদর, কিশোরগঞ্জ
+    </div>
+    <div class="hero-classes">
+      <span class="class-badge">📗 HSC</span>
+      <span class="class-badge">🎓 Honours</span>
+      <span class="class-badge">📘 Degree</span>
+      <span class="class-badge">🏅 Masters</span>
+    </div>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'})">এখনই ভর্তি হন</button>
+      <button class="btn-secondary" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">কোর্স দেখুন</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">৫০০+</div>
+    <div class="stat-label">সফল শিক্ষার্থী</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">১০+</div>
+    <div class="stat-label">বছরের অভিজ্ঞতা</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">৯৮%</div>
+    <div class="stat-label">পাসের হার</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">৪টি</div>
+    <div class="stat-label">শিক্ষা স্তর</div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section class="courses-section" id="courses">
+  <div class="section-header">
+    <div class="section-tag">আমাদের কোর্সসমূহ</div>
+    <h2 class="section-title">যে স্তরে পড়তে চান বেছে নিন</h2>
+    <p class="section-desc">HSC থেকে Masters পর্যন্ত সকল স্তরে অর্থনীতি বিষয়ে বিশেষজ্ঞ কোচিং</p>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card">
+      <div class="course-icon">📗</div>
+      <div class="course-level">উচ্চ মাধ্যমিক</div>
+      <div class="course-title">HSC অর্থনীতি</div>
+      <div class="course-desc">একাদশ ও দ্বাদশ শ্রেণির পূর্ণাঙ্গ অর্থনীতি কোর্স। বোর্ড পরীক্ষায় A+ পাওয়ার নিশ্চিত প্রস্তুতি।</div>
+      <div class="course-subjects">
+        <span class="subject-tag">মাইক্রো</span>
+        <span class="subject-tag">ম্যাক্রো</span>
+        <span class="subject-tag">MCQ</span>
+        <span class="subject-tag">CQ</span>
+      </div>
+      <button class="course-btn">বিস্তারিত দেখুন</button>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">🎓</div>
+      <div class="course-level">স্নাতক (সম্মান)</div>
+      <div class="course-title">Honours অর্থনীতি</div>
+      <div class="course-desc">অনার্স ১ম থেকে ৪র্থ বর্ষ পর্যন্ত। বিশ্ববিদ্যালয় সিলেবাস অনুযায়ী গভীর অধ্যয়ন।</div>
+      <div class="course-subjects">
+        <span class="subject-tag">তত্ত্ব</span>
+        <span class="subject-tag">গণিত</span>
+        <span class="subject-tag">পরিসংখ্যান</span>
+        <span class="subject-tag">উন্নয়ন</span>
+      </div>
+      <button class="course-btn">বিস্তারিত দেখুন</button>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">📘</div>
+      <div class="course-level">স্নাতক (পাস)</div>
+      <div class="course-title">Degree অর্থনীতি</div>
+      <div class="course-desc">ডিগ্রি কোর্সের সকল বর্ষের জন্য সহজ ও কার্যকর পাঠদান। পরীক্ষা কেন্দ্রিক প্রস্তুতি।</div>
+      <div class="course-subjects">
+        <span class="subject-tag">১ম বর্ষ</span>
+        <span class="subject-tag">২য় বর্ষ</span>
+        <span class="subject-tag">৩য় বর্ষ</span>
+      </div>
+      <button class="course-btn">বিস্তারিত দেখুন</button>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">🏅</div>
+      <div class="course-level">স্নাতকোত্তর</div>
+      <div class="course-title">Masters অর্থনীতি</div>
+      <div class="course-desc">প্রিলিমিনারি ও ফাইনাল উভয় বর্ষের জন্য উচ্চমানের অ্যাকাডেমিক গাইডেন্স।</div>
+      <div class="course-subjects">
+        <span class="subject-tag">প্রিলিমিনারি</span>
+        <span class="subject-tag">ফাইনাল</span>
+        <span class="subject-tag">থিসিস</span>
+      </div>
+      <button class="course-btn">বিস্তারিত দেখুন</button>
+    </div>
+  </div>
+</section>
+
+<!-- DCAMPUS FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-header">
+    <div class="section-tag">Dcampus সফটওয়্যার</div>
+    <h2 class="section-title">আধুনিক প্রযুক্তিতে পরিচালিত প্রতিষ্ঠান</h2>
+    <p class="section-desc">MH Academy Dcampus সফটওয়্যার ব্যবহার করে শিক্ষার্থীদের সেরা সেবা নিশ্চিত করে</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-head">
+        <div class="feature-icon-box feat-blue">📊</div>
+        <div>
+          <div class="feature-name">রেজাল্ট প্রসেস</div>
+          <div class="feature-tag-line">মাত্র ১ দিনে ফলাফল তৈরি</div>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> এক ক্লিকে এডমিট কার্ড ও সিট প্ল্যান</li>
+        <li><span class="check">✓</span> ৪ ধরনের ট্যাবুলেশন শীট ও মার্কশীট</li>
+        <li><span class="check">✓</span> মেরিট লিষ্ট ও ফেইল লিষ্ট রিপোর্ট</li>
+        <li><span class="check">✓</span> গ্রেডিং ও পাস-ফেইল সামারি</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-head">
+        <div class="feature-icon-box feat-green">🖐️</div>
+        <div>
+          <div class="feature-name">হাজিরা প্রসেস</div>
+          <div class="feature-tag-line">আধুনিক স্ট্যান্ডার্ড পদ্ধতি</div>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> ফিঙ্গারপ্রিন্ট দিয়ে হাজিরা</li>
+        <li><span class="check">✓</span> আইডি কার্ড দিয়ে হাজিরা</li>
+        <li><span class="check">✓</span> ফোন বা কম্পিউটার দিয়ে হাজিরা</li>
+        <li><span class="check">✓</span> দৈনিক ও মাসিক রিপোর্ট</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-head">
+        <div class="feature-icon-box feat-purple">💬</div>
+        <div>
+          <div class="feature-name">SMS মেসেজিং</div>
+          <div class="feature-tag-line">মাত্র ৪০ পয়সা প্রতি মেসেজ</div>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> উপস্থিত/অনুপস্থিত অটো মেসেজ</li>
+        <li><span class="check">✓</span> কাস্টম মেসেজ পাঠানো</li>
+        <li><span class="check">✓</span> শুভেচ্ছা ও দাওয়াতের মেসেজ</li>
+        <li><span class="check">✓</span> মোবাইল রিচার্জের মতো সুবিধাজনক</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-head">
+        <div class="feature-icon-box feat-gold">💳</div>
+        <div>
+          <div class="feature-name">অনলাইন ফি কালেকশন</div>
+          <div class="feature-tag-line">bKash, Nagad, Bank</div>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> bKash, Nagad, ব্যাংকে ফি প্রদান</li>
+        <li><span class="check">✓</span> তাৎক্ষণিক বিল তথ্য</li>
+        <li><span class="check">✓</span> পার্শিয়াল বিল পেমেন্ট সুবিধা</li>
+        <li><span class="check">✓</span> মানি রিসিভ ও রসিদ</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-head">
+        <div class="feature-icon-box feat-red">🌐</div>
+        <div>
+          <div class="feature-name">অনলাইন অ্যাডমিশন</div>
+          <div class="feature-tag-line">ঘরে বসে ভর্তি</div>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> অনলাইনে ভর্তি আবেদন</li>
+        <li><span class="check">✓</span> আইডি কার্ড, এডমিট কার্ড, TC</li>
+        <li><span class="check">✓</span> ইন্সটিটিউট অ্যাকাউন্টিং</li>
+        <li><span class="check">✓</span> ফী ব্যবস্থাপনা সিস্টেম</li>
+      </ul>
+    </div>
+    <div class="feature-card" style="background: linear-gradient(135deg, var(--deep-navy), var(--royal-blue)); color: white;">
+      <div class="feature-head">
+        <div class="feature-icon-box" style="background:rgba(255,255,255,0.15)">⚡</div>
+        <div>
+          <div class="feature-name" style="color:white">সহজ পরিচালনা</div>
+          <div class="feature-tag-line" style="color:rgba(255,255,255,0.6)">আলাদা লোক লাগে না</div>
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li style="color:rgba(255,255,255,0.8); border-color:rgba(255,255,255,0.1)"><span style="color:var(--gold-light)">✓</span> বিশেষ কারো প্রয়োজন নেই</li>
+        <li style="color:rgba(255,255,255,0.8); border-color:rgba(255,255,255,0.1)"><span style="color:var(--gold-light)">✓</span> ব্যবহারকারী-বান্ধব ইন্টারফেস</li>
+        <li style="color:rgba(255,255,255,0.8); border-color:rgba(255,255,255,0.1)"><span style="color:var(--gold-light)">✓</span> সব সুবিধা এক প্ল্যাটফর্মে</li>
+        <li style="color:rgba(255,255,255,0.8); border-color:rgba(255,255,255,0.1)"><span style="color:var(--gold-light)">✓</span> নিরবচ্ছিন্ন সাপোর্ট সেবা</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSION -->
+<section class="admission-section" id="admission">
+  <div class="section-header">
+    <div class="section-tag" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:var(--gold-light)">অনলাইন ভর্তি</div>
+    <h2 class="section-title">মাত্র কয়েক মিনিটে ভর্তি হন</h2>
+    <p class="section-desc">ঘরে বসেই সম্পন্ন করুন আপনার ভর্তি প্রক্রিয়া</p>
+  </div>
+  <div class="admission-steps">
+    <div class="step">
+      <div class="step-num">১</div>
+      <div class="step-label">ফর্ম পূরণ করুন</div>
+    </div>
+    <div class="step">
+      <div class="step-num">২</div>
+      <div class="step-label">কোর্স বাছাই করুন</div>
+    </div>
+    <div class="step">
+      <div class="step-num">৩</div>
+      <div class="step-label">ফি পরিশোধ করুন</div>
+    </div>
+    <div class="step">
+      <div class="step-num">৪</div>
+      <div class="step-label">ক্লাসে যোগ দিন</div>
+    </div>
+  </div>
+  <div class="admission-cards">
+    <div class="pay-card">📱 bKash</div>
+    <div class="pay-card">💚 Nagad</div>
+    <div class="pay-card">🏦 ব্যাংক</div>
+    <div class="pay-card">💵 নগদ</div>
+  </div>
+  <button class="btn-primary" style="font-size:1.05rem; padding:14px 36px;">অনলাইনে ভর্তি আবেদন করুন →</button>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-header">
+    <div class="section-tag">কেন MH Academy</div>
+    <h2 class="section-title">আমাদের বিশেষত্ব</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">👨‍🏫</div>
+      <div class="why-title">অভিজ্ঞ শিক্ষকমণ্ডলী</div>
+      <div class="why-text">বিশ্ববিদ্যালয় শিক্ষক ও বিশেষজ্ঞদের দ্বারা পাঠদান</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📝</div>
+      <div class="why-title">নিয়মিত পরীক্ষা</div>
+      <div class="why-text">সাপ্তাহিক ও মাসিক মডেল টেস্টের মাধ্যমে প্রস্তুতি যাচাই</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📚</div>
+      <div class="why-title">বিশেষ নোট</div>
+      <div class="why-text">হাতে লেখা ও প্রিন্টেড নোট সরবরাহ করা হয় বিনামূল্যে</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <div class="why-title">স্মার্ট ম্যানেজমেন্ট</div>
+      <div class="why-text">Dcampus সফটওয়্যারে সব তথ্য ও ফলাফল অনলাইনে পাবেন</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">সাশ্রয়ী মূল্য</div>
+      <div class="why-text">কিশোরগঞ্জের মধ্যে সবচেয়ে সাশ্রয়ী মূল্যে সেরা মানের কোচিং</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">সফল ফলাফল</div>
+      <div class="why-text">৯৮% পাসের হার এবং A+ প্রাপ্তির উজ্জ্বল ইতিহাস</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-header">
+    <div class="section-tag">যোগাযোগ করুন</div>
+    <h2 class="section-title">আমাদের সাথে কথা বলুন</h2>
+    <p class="section-desc">যেকোনো প্রশ্ন বা তথ্যের জন্য আমরা সবসময় প্রস্তুত</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>MH Academy</h3>
+      <div class="contact-item">
+        <div class="contact-icon-box">📍</div>
+        <div>
+          <div class="contact-detail-label">ঠিকানা</div>
+          <div class="contact-detail-value">কিশোরগঞ্জ সদর, কিশোরগঞ্জ</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-box">📞</div>
+        <div>
+          <div class="contact-detail-label">ফোন</div>
+          <div class="contact-detail-value">+880 1XXX-XXXXXX</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-box">⏰</div>
+        <div>
+          <div class="contact-detail-label">ক্লাসের সময়</div>
+          <div class="contact-detail-value">সকাল ৮টা — রাত ৯টা</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-box">📧</div>
+        <div>
+          <div class="contact-detail-label">ইমেইল</div>
+          <div class="contact-detail-value">info@mhacademy.edu.bd</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h4>📩 বার্তা পাঠান</h4>
+      <div class="form-row">
+        <label>আপনার নাম</label>
+        <input type="text" placeholder="পূর্ণ নাম লিখুন">
+      </div>
+      <div class="form-row">
+        <label>মোবাইল নম্বর</label>
+        <input type="tel" placeholder="01XXXXXXXXX">
+      </div>
+      <div class="form-row">
+        <label>কোর্স বাছাই করুন</label>
+        <select>
+          <option>কোর্স নির্বাচন করুন</option>
+          <option>HSC অর্থনীতি</option>
+          <option>Honours অর্থনীতি</option>
+          <option>Degree অর্থনীতি</option>
+          <option>Masters অর্থনীতি</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>বার্তা</label>
+        <textarea placeholder="আপনার প্রশ্ন বা বার্তা লিখুন..."></textarea>
+      </div>
+      <button class="form-submit">বার্তা পাঠান →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>🎓 MH Academy</h3>
+      <p>কিশোরগঞ্জের বিশ্বস্ত অর্থনীতি কোচিং সেন্টার। HSC, Honours, Degree ও Masters স্তরে সর্বোচ্চ মানের কোচিং সেবা প্রদান করি। Dcampus সফটওয়্যারের মাধ্যমে আধুনিক পদ্ধতিতে পরিচালিত।</p>
+    </div>
+    <div class="footer-col">
+      <h4>কোর্সসমূহ</h4>
+      <a href="#">HSC অর্থনীতি</a>
+      <a href="#">Honours অর্থনীতি</a>
+      <a href="#">Degree অর্থনীতি</a>
+      <a href="#">Masters অর্থনীতি</a>
+    </div>
+    <div class="footer-col">
+      <h4>দ্রুত লিংক</h4>
+      <a href="#">অনলাইন ভর্তি</a>
+      <a href="#">ফি পরিশোধ</a>
+      <a href="#">রেজাল্ট দেখুন</a>
+      <a href="#">যোগাযোগ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© ২০২৫ MH Academy, কিশোরগঞ্জ সদর। সর্বস্বত্ব সংরক্ষিত।</span>
+    &nbsp;|&nbsp;
+    <span>Powered by <span class="gold-text">Dcampus</span></span>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if(t) t.scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // Form submit
+  document.querySelector('.form-submit').addEventListener('click', () => {
+    alert('আপনার বার্তা পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।');
+  });
+
+  // Course buttons
+  document.querySelectorAll('.course-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('admission').scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>
